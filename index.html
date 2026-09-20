@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Not Rape, By Law. A Digital Exhibit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#1C1520;
+    --ivory:#F6F0E5;
+    --ivory2:#EBE1D0;
+    --haldi:#BD8B26;
+    --mehendi:#4E6144;
+    --sindoor:#C0391F;
+    --sindoor-dp:#8E2413;
+    --ash:#6A5D55;
+    --hair:#D7C9B4;
+    --serif:'Source Serif 4',Georgia,serif;
+    --sans:'Inter',-apple-system,'Segoe UI',sans-serif;
+    --deva:'Tiro Devanagari Hindi','Noto Sans Devanagari',serif;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:inherit}
+  html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+  body{margin:0;background:var(--ivory);color:var(--night);font-family:var(--sans)}
+  ::selection{background:var(--sindoor);color:#fff}
+  img,svg{max-width:100%;display:block}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+
+  [data-lang]{display:none}
+  body.lang-en [data-lang="en"]{display:block}
+  body.lang-hi [data-lang="hi"]{display:block}
+  span[data-lang],em[data-lang]{display:none}
+  body.lang-en span[data-lang="en"],body.lang-en em[data-lang="en"]{display:inline}
+  body.lang-hi span[data-lang="hi"],body.lang-hi em[data-lang="hi"]{display:inline}
+  body.lang-hi [data-lang="hi"]{font-family:var(--deva);line-height:1.8}
+
+  header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:rgba(246,240,229,.96);backdrop-filter:blur(8px);border-bottom:2px solid var(--night)}
+  .nav-in{max-width:1000px;margin:0 auto;padding:13px 24px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+  .brand{font-family:var(--serif);font-weight:700;font-size:1.06rem;text-decoration:none;color:var(--night)}
+  .brand .dot{color:var(--sindoor)}
+  .nav-right{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .nav-links{display:flex;gap:18px;font-size:.88rem}
+  .nav-links a{text-decoration:none;color:var(--ash);padding-bottom:2px;border-bottom:2px solid transparent;transition:.15s}
+  .nav-links a:hover{color:var(--night);border-color:var(--sindoor)}
+  .lang-toggle{display:flex;border:1.5px solid var(--night);overflow:hidden;background:#fff}
+  .lang-toggle button{border:0;background:none;padding:5px 14px;font-size:.82rem;cursor:pointer;color:var(--ash);font-family:var(--sans);font-weight:500}
+  .lang-toggle button.on{background:var(--night);color:var(--ivory)}
+  .lang-toggle button:focus-visible{outline:2px solid var(--sindoor);outline-offset:2px}
+
+  /* HERO */
+  .hero{background:var(--night);color:var(--ivory);padding:54px 0 0;position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:46px;align-items:end;position:relative}
+  @media(max-width:780px){.hero-grid{grid-template-columns:1fr;gap:30px}}
+  .kicker{font-size:.8rem;color:var(--haldi);font-weight:600;margin:0 0 15px}
+  .hero h1{font-family:var(--serif);font-size:clamp(2rem,4.8vw,3.3rem);line-height:1.06;font-weight:700;margin:0 0 22px;letter-spacing:-.015em;max-width:16ch}
+  body.lang-hi .hero h1{font-family:var(--deva);font-size:clamp(1.55rem,3.6vw,2.35rem);line-height:1.45}
+  .hero .lede{font-size:1.02rem;line-height:1.72;color:#CFC1B4;max-width:52ch;margin:0 0 36px}
+  .hero-poster img{width:100%;box-shadow:0 -4px 50px rgba(0,0,0,.55)}
+  .poster-cap{font-size:.74rem;color:#948479;padding:11px 0 14px;line-height:1.55}
+
+  /* CHAIN MOTIF BANDS */
+  .chainband{background:var(--night);padding:0 0 10px;overflow:hidden}
+  .chainband svg{width:100%;height:auto;display:block}
+  .motif-cap{max-width:1000px;margin:0 auto;padding:6px 24px 16px;font-size:.73rem;color:#8E8075;line-height:1.55}
+  .divider{background:var(--ivory2);border-top:2px solid var(--night);border-bottom:2px solid var(--night);padding:16px 0;margin:60px 0 0}
+  .divider svg{width:100%;max-width:820px;margin:0 auto;height:auto}
+
+  /* TILES */
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--night);border-bottom:2px solid var(--night)}
+  @media(max-width:820px){.tiles{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:460px){.tiles{grid-template-columns:1fr}}
+  .tile{position:relative;padding:28px 22px 36px;text-decoration:none;color:#fff;display:block;transition:filter .2s;border-right:2px solid var(--night);overflow:hidden}
+  .tile:last-child{border-right:0}
+  @media(max-width:820px){.tile:nth-child(2n){border-right:0}.tile:nth-child(-n+2){border-bottom:2px solid var(--night)}}
+  @media(max-width:460px){.tile{border-right:0;border-bottom:2px solid var(--night)}.tile:last-child{border-bottom:0}}
+  .tile:hover{filter:brightness(1.13)}
+  .tile:focus-visible{outline:3px solid var(--haldi);outline-offset:-3px}
+  .t1{background:var(--sindoor-dp)} .t2{background:#2E2436} .t3{background:var(--mehendi)} .t4{background:var(--haldi)}
+  .tile .ic{width:34px;height:34px;margin-bottom:14px;opacity:.88}
+  .tile h3{font-family:var(--serif);font-size:1.12rem;font-weight:700;margin:0 0 8px;line-height:1.25}
+  body.lang-hi .tile h3{font-family:var(--deva);font-size:1rem}
+  .tile p{font-size:.85rem;line-height:1.55;margin:0;opacity:.93}
+
+  /* SECTIONS */
+  .sec{padding:60px 0 0}
+  .sec-head h2{font-family:var(--serif);font-size:1.72rem;font-weight:700;margin:0 0 10px;letter-spacing:-.01em}
+  body.lang-hi .sec-head h2{font-family:var(--deva);font-size:1.45rem}
+  .sec-head .sub{color:var(--ash);max-width:60ch;line-height:1.65;margin:0 0 32px;font-size:.96rem}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+  @media(max-width:680px){.two{grid-template-columns:1fr}}
+  .two h3{font-family:var(--serif);font-size:1.08rem;font-weight:700;margin:0 0 9px}
+  body.lang-hi .two h3{font-family:var(--deva)}
+  .two p{color:var(--ash);line-height:1.72;font-size:.95rem;margin:0}
+
+  /* STATUTE */
+  .statute-box{background:var(--night);color:var(--ivory);padding:34px 32px 30px;position:relative;overflow:hidden;border:2px solid var(--night)}
+  .si-label{font-size:.76rem;color:var(--haldi);margin:0 0 18px}
+  .si-text{font-family:var(--serif);font-size:clamp(1.06rem,2.4vw,1.36rem);line-height:1.65;font-style:italic;margin:0}
+  body.lang-hi .si-text{font-family:var(--deva);font-style:normal;line-height:1.9}
+  .si-strike{cursor:pointer;border-bottom:1px dotted #8c8376;transition:color .25s;padding:0 1px}
+  .si-strike:hover{color:#E7A38F}
+  .si-strike.struck{color:#8c8376;text-decoration:line-through;text-decoration-color:var(--sindoor);text-decoration-thickness:3px}
+  .si-note{margin:16px 0 0;font-size:.9rem;line-height:1.68;color:#D6C8BA;min-height:70px;border-left:3px solid var(--sindoor);padding-left:15px}
+  .si-note:empty{border-left-color:#362C3C}
+  body.lang-hi .si-note{font-family:var(--deva)}
+  .si-hint{font-size:.77rem;color:#8E8075;margin:16px 0 0}
+
+  /* TIMELINE */
+  .lawbox{border:2px solid var(--night);background:#fff;padding:30px 26px 12px}
+  .track{position:relative;height:3px;background:var(--ivory2);margin:0 10px}
+  .pts{display:flex;justify-content:space-between;margin:0 0 22px}
+  .pt{display:flex;flex-direction:column;align-items:center;width:19%;cursor:pointer;background:none;border:0;padding:0;font-family:var(--sans)}
+  .pt .lnk{width:26px;height:15px;border:2.5px solid var(--ash);border-radius:8px;margin-top:-9px;margin-bottom:11px;transition:.18s;background:#fff}
+  .pt:hover .lnk,.pt.on .lnk{border-color:var(--sindoor);background:var(--sindoor)}
+  .pt .y{font-size:.83rem;font-weight:700;color:var(--ash);transition:.18s}
+  .pt.on .y{color:var(--sindoor)}
+  .pt:focus-visible{outline:2px solid var(--sindoor);outline-offset:3px}
+  .lawdet{border-top:2px solid var(--ivory2);padding:22px 2px 26px;font-size:.94rem;line-height:1.72;min-height:132px}
+  .lawdet strong{font-family:var(--serif);font-size:1.06rem;display:block;margin-bottom:8px;color:var(--sindoor-dp)}
+  body.lang-hi .lawdet,body.lang-hi .lawdet strong{font-family:var(--deva)}
+  @media(max-width:620px){.pts{flex-wrap:wrap;gap:18px 0}.pt{width:33%}.track{display:none}}
+
+  /* ARCHIVE */
+  .counter{display:inline-block;background:var(--night);color:var(--ivory);font-size:.78rem;font-weight:600;padding:5px 14px;margin-bottom:18px}
+  .card{border:2px solid var(--night);background:#fff;margin-bottom:26px}
+  .card-top{background:var(--sindoor-dp);color:#fff;padding:15px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  .card-top.next{background:#2E2436}
+  .card-no{font-family:var(--serif);font-size:1.02rem;font-weight:700}
+  .card-kind{font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 11px}
+  .card-body{padding:28px 26px 30px}
+  .card-body h3{font-family:var(--serif);font-size:1.34rem;font-weight:700;margin:0 0 18px;line-height:1.3}
+  body.lang-hi .card-body h3{font-family:var(--deva);font-size:1.18rem}
+  .obj{background:var(--ivory2);border-left:4px solid var(--sindoor);padding:20px 22px;margin-bottom:22px}
+  .obj-label{font-size:.74rem;color:var(--ash);margin:0 0 10px;font-weight:600}
+  .obj blockquote{margin:0;font-family:var(--serif);font-style:italic;font-size:1.04rem;line-height:1.6}
+  body.lang-hi .obj blockquote{font-family:var(--deva);font-style:normal}
+  .obj cite{display:block;font-style:normal;font-family:var(--sans);font-size:.79rem;color:var(--ash);margin-top:13px;line-height:1.6}
+  .body p{line-height:1.76;font-size:.97rem;margin:0 0 15px}
+  .body p:last-child{margin-bottom:0}
+  .readtag{margin-top:22px;padding:16px 18px;background:var(--night);color:#CFC1B4;font-size:.88rem;line-height:1.65}
+  .readtag strong{color:var(--haldi);font-weight:600}
+  .nextnote{font-size:.95rem;line-height:1.76;color:var(--ash)}
+
+  footer{background:var(--night);color:#A89789;padding:44px 0 56px;margin-top:60px}
+  footer p{font-size:.85rem;line-height:1.75;max-width:64ch;margin:0 0 12px}
+  footer .cr{font-size:.8rem;color:#746758;margin-top:18px}
+  body.lang-hi footer p{font-family:var(--deva)}
+</style>
+</head>
+<body class="lang-en">
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top">Not Rape, By Law<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links">
+        <a href="#about"><span data-lang="en">About</span><span data-lang="hi">परिचय</span></a>
+        <a href="#statute"><span data-lang="en">The Exception</span><span data-lang="hi">अपवाद</span></a>
+        <a href="#timeline"><span data-lang="en">Timeline</span><span data-lang="hi">कालक्रम</span></a>
+        <a href="#archive"><span data-lang="en">Archive</span><span data-lang="hi">संग्रह</span></a>
+      </nav>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
+        <button id="btn-hi" onclick="setLang('hi')">हिं</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="kicker">
+          <span data-lang="en">A digital exhibit, added to through the term</span>
+          <span data-lang="hi">एक डिजिटल प्रदर्शनी, जो पूरे सत्र में बढ़ती रहेगी</span>
+        </p>
+        <h1 data-lang="en">The law has a name for this. It just isn't rape.</h1>
+        <h1 data-lang="hi">कानून के पास इसका एक नाम है। बस वह नाम बलात्कार नहीं है।</h1>
+        <p class="lede" data-lang="en">
+          In India a husband cannot be prosecuted for raping his adult wife. Not because
+          the act falls outside the definition of rape, but because the law writes one
+          exception into that definition, and marriage is it. This exhibit collects the
+          documents, images and numbers that sit around that exception: what it says,
+          where it came from, who has fought it, and what it costs.
+        </p>
+        <p class="lede" data-lang="hi">
+          भारत में किसी पति पर अपनी वयस्क पत्नी के बलात्कार का मुकदमा नहीं चलाया जा सकता। इसलिए
+          नहीं कि वह कृत्य बलात्कार की परिभाषा से बाहर है, बल्कि इसलिए कि कानून उस परिभाषा में एक
+          अपवाद लिख देता है, और वह अपवाद है विवाह। यह प्रदर्शनी उन दस्तावेज़ों, तस्वीरों और आँकड़ों
+          को एकत्र करती है जो इस अपवाद के इर्द-गिर्द खड़े हैं: यह क्या कहता है, कहाँ से आया, किसने
+          इससे लड़ाई लड़ी, और इसकी कीमत कौन चुकाता है।
+        </p>
+      </div>
+      <div class="hero-poster">
+        <img src="poster.jpg" alt="Poster showing the text of Exception 2 to Section 375, with the phrase 'his own wife' struck through and the words 'is not rape' set large.">
+        <p class="poster-cap">
+          <span data-lang="en">Exhibit poster, 2026. Original work made for this exhibit, not archival campaign material.</span>
+          <span data-lang="hi">प्रदर्शनी पोस्टर, 2026। इस प्रदर्शनी के लिए बनाई गई मौलिक कृति, कोई पुरालेखीय अभियान सामग्री नहीं।</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANGALSUTRA TO CHAIN MOTIF -->
+<div class="chainband">
+  <svg viewBox="0 0 1000 70" role="img" aria-label="A mangalsutra thread whose beads turn into chain links and end in a closed padlock.">
+    <line x1="10" y1="35" x2="330" y2="35" stroke="#7A6A5C" stroke-width="1.5"/>
+    <g fill="#BD8B26">
+      <circle cx="40" cy="35" r="4"/><circle cx="62" cy="35" r="4"/><circle cx="84" cy="35" r="4"/>
+      <circle cx="106" cy="35" r="4"/><circle cx="128" cy="35" r="4"/><circle cx="150" cy="35" r="4"/>
+      <circle cx="172" cy="35" r="4"/><circle cx="194" cy="35" r="4"/><circle cx="216" cy="35" r="4"/>
+      <circle cx="238" cy="35" r="4"/><circle cx="260" cy="35" r="4"/><circle cx="282" cy="35" r="4"/>
+      <circle cx="304" cy="35" r="4"/>
+    </g>
+    <g fill="none" stroke="#C0391F" stroke-width="3">
+      <rect x="330" y="26" width="46" height="18" rx="9"/>
+      <rect x="366" y="26" width="46" height="18" rx="9"/>
+      <rect x="402" y="26" width="46" height="18" rx="9"/>
+      <rect x="438" y="26" width="46" height="18" rx="9"/>
+      <rect x="474" y="26" width="46" height="18" rx="9"/>
+      <rect x="510" y="26" width="46" height="18" rx="9"/>
+      <rect x="546" y="26" width="46" height="18" rx="9"/>
+      <rect x="582" y="26" width="46" height="18" rx="9"/>
+      <rect x="618" y="26" width="46" height="18" rx="9"/>
+      <rect x="654" y="26" width="46" height="18" rx="9"/>
+      <rect x="690" y="26" width="46" height="18" rx="9"/>
+      <rect x="726" y="26" width="46" height="18" rx="9"/>
+      <rect x="762" y="26" width="46" height="18" rx="9"/>
+      <rect x="798" y="26" width="46" height="18" rx="9"/>
+    </g>
+    <g stroke="#BD8B26" stroke-width="3" fill="none">
+      <path d="M862 30 v-8 a12 12 0 0 1 24 0 v8"/>
+    </g>
+    <rect x="854" y="30" width="40" height="30" fill="#BD8B26"/>
+    <rect x="871" y="40" width="6" height="12" fill="#1C1520"/>
+  </svg>
+  <p class="motif-cap">
+    <span data-lang="en">Motif: the marriage thread continues as chain and closes in a lock. Marriage is the point at which the law stops asking about consent.</span>
+    <span data-lang="hi">प्रतीक: विवाह का धागा आगे चलकर ज़ंजीर बनता है और एक ताले पर जाकर बंद हो जाता है। विवाह ही वह बिंदु है जहाँ कानून सहमति पूछना बंद कर देता है।</span>
+  </p>
+</div>
+
+<nav class="tiles" aria-label="Sections">
+  <a class="tile t1" href="#statute">
+    <svg class="ic" viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="2.4" aria-hidden="true">
+      <rect x="6" y="5" width="28" height="30"/><line x1="12" y1="13" x2="28" y2="13"/>
+      <line x1="12" y1="20" x2="28" y2="20"/><line x1="12" y1="27" x2="22" y2="27"/>
+      <line x1="9" y1="20" x2="31" y2="20" stroke="#F0C9C0" stroke-width="3"/>
+    </svg>
+    <h3 data-lang="en">The Exception</h3>
+    <h3 data-lang="hi">अपवाद</h3>
+    <p data-lang="en">Twenty six words of statute. Read them closely.</p>
+    <p data-lang="hi">कानून के छब्बीस शब्द। इन्हें ध्यान से पढ़िए।</p>
+  </a>
+  <a class="tile t2" href="#timeline">
+    <svg class="ic" viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="2.4" aria-hidden="true">
+      <rect x="3" y="14" width="17" height="11" rx="5.5"/>
+      <rect x="17" y="14" width="17" height="11" rx="5.5"/>
+      <line x1="20" y1="6" x2="20" y2="11"/><line x1="20" y1="29" x2="20" y2="34"/>
+    </svg>
+    <h3 data-lang="en">The Timeline</h3>
+    <h3 data-lang="hi">कालक्रम</h3>
+    <p data-lang="en">Five moments it could have gone. It stayed.</p>
+    <p data-lang="hi">पाँच मौके जब यह हट सकता था। यह टिका रहा।</p>
+  </a>
+  <a class="tile t3" href="#archive">
+    <svg class="ic" viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="2.4" aria-hidden="true">
+      <rect x="5" y="9" width="30" height="24"/><line x1="5" y1="17" x2="35" y2="17"/>
+      <line x1="15" y1="17" x2="15" y2="33"/><line x1="25" y1="17" x2="25" y2="33"/>
+    </svg>
+    <h3 data-lang="en">The Archive</h3>
+    <h3 data-lang="hi">संग्रह</h3>
+    <p data-lang="en">Four objects, added one at a time.</p>
+    <p data-lang="hi">चार वस्तुएँ, एक-एक करके जोड़ी गईं।</p>
+  </a>
+  <a class="tile t4" href="#about">
+    <svg class="ic" viewBox="0 0 40 40" fill="none" stroke="#3A2A0A" stroke-width="2.4" aria-hidden="true">
+      <path d="M8 32 V18 L20 8 L32 18 V32 Z"/><line x1="15" y1="32" x2="15" y2="23"/>
+      <line x1="25" y1="32" x2="25" y2="23"/><line x1="15" y1="23" x2="25" y2="23"/>
+    </svg>
+    <h3 data-lang="en">About</h3>
+    <h3 data-lang="hi">परिचय</h3>
+    <p data-lang="en">What this collects, and how to read it.</p>
+    <p data-lang="hi">यह क्या एकत्र करती है, और इसे कैसे पढ़ें।</p>
+  </a>
+</nav>
+
+<section class="sec" id="statute">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-lang="en">The exception, in its own words</h2>
+      <h2 data-lang="hi">अपवाद, उसके अपने शब्दों में</h2>
+      <p class="sub" data-lang="en">Click each underlined phrase to see what work it is doing.</p>
+      <p class="sub" data-lang="hi">यह देखने के लिए कि हर वाक्यांश क्या काम कर रहा है, उस पर क्लिक कीजिए।</p>
+    </div>
+    <div class="statute-box">
+      <p class="si-label">Exception 2, Section 375, Indian Penal Code (1860) / Section 63, Bharatiya Nyaya Sanhita (2023)</p>
+      <p class="si-text" data-lang="en">
+        Sexual intercourse or sexual acts by a man with his
+        <span class="si-strike" data-k="wife">own wife</span>, the wife not being
+        <span class="si-strike" data-k="age">under eighteen years of age</span>, is
+        <span class="si-strike" data-k="not">not rape</span>.
+      </p>
+      <p class="si-text" data-lang="hi">
+        किसी पुरुष द्वारा
+        <span class="si-strike" data-k="wife">अपनी ही पत्नी</span> के साथ संभोग या यौन कृत्य, जबकि पत्नी
+        <span class="si-strike" data-k="age">अठारह वर्ष से कम आयु की न हो</span>,
+        <span class="si-strike" data-k="not">बलात्कार नहीं है</span>।
+      </p>
+      <p class="si-note" id="siNote"></p>
+      <p class="si-hint">
+        <span data-lang="en">Three phrases. Each one is load bearing.</span>
+        <span data-lang="hi">तीन वाक्यांश। हर एक अपने आप में निर्णायक है।</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="divider">
+  <svg viewBox="0 0 820 34" role="img" aria-label="A row of chain links with one link broken open in the middle.">
+    <g fill="none" stroke="#1C1520" stroke-width="2.6">
+      <rect x="10" y="10" width="44" height="16" rx="8"/>
+      <rect x="44" y="10" width="44" height="16" rx="8"/>
+      <rect x="78" y="10" width="44" height="16" rx="8"/>
+      <rect x="112" y="10" width="44" height="16" rx="8"/>
+      <rect x="146" y="10" width="44" height="16" rx="8"/>
+      <rect x="180" y="10" width="44" height="16" rx="8"/>
+      <rect x="214" y="10" width="44" height="16" rx="8"/>
+      <rect x="248" y="10" width="44" height="16" rx="8"/>
+      <rect x="282" y="10" width="44" height="16" rx="8"/>
+      <rect x="316" y="10" width="44" height="16" rx="8"/>
+      <rect x="350" y="10" width="44" height="16" rx="8"/>
+    </g>
+    <g fill="none" stroke="#C0391F" stroke-width="2.6">
+      <path d="M392 10 h18 a8 8 0 0 1 8 8 a8 8 0 0 1 -8 8 h-18"/>
+      <path d="M438 26 h-6 a8 8 0 0 1 -8 -8 a8 8 0 0 1 8 -8 h6"/>
+    </g>
+    <g fill="none" stroke="#1C1520" stroke-width="2.6">
+      <rect x="430" y="10" width="44" height="16" rx="8"/>
+      <rect x="464" y="10" width="44" height="16" rx="8"/>
+      <rect x="498" y="10" width="44" height="16" rx="8"/>
+      <rect x="532" y="10" width="44" height="16" rx="8"/>
+      <rect x="566" y="10" width="44" height="16" rx="8"/>
+      <rect x="600" y="10" width="44" height="16" rx="8"/>
+      <rect x="634" y="10" width="44" height="16" rx="8"/>
+      <rect x="668" y="10" width="44" height="16" rx="8"/>
+      <rect x="702" y="10" width="44" height="16" rx="8"/>
+      <rect x="736" y="10" width="44" height="16" rx="8"/>
+      <rect x="766" y="10" width="44" height="16" rx="8"/>
+    </g>
+  </svg>
+</div>
+
+<section class="sec" id="timeline">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-lang="en">How the exception has, and has not, moved</h2>
+      <h2 data-lang="hi">यह अपवाद कितना बदला, और कितना नहीं</h2>
+      <p class="sub" data-lang="en">Five moments when it could have gone. Click a year.</p>
+      <p class="sub" data-lang="hi">पाँच मौके जब यह हट सकता था। किसी वर्ष पर क्लिक कीजिए।</p>
+    </div>
+    <div class="lawbox">
+      <div class="track"></div>
+      <div class="pts" id="pts">
+        <button class="pt on" data-i="0"><span class="lnk"></span><span class="y">1860</span></button>
+        <button class="pt" data-i="1"><span class="lnk"></span><span class="y">2013</span></button>
+        <button class="pt" data-i="2"><span class="lnk"></span><span class="y">2017</span></button>
+        <button class="pt" data-i="3"><span class="lnk"></span><span class="y">2022</span></button>
+        <button class="pt" data-i="4"><span class="lnk"></span><span class="y">2023</span></button>
+      </div>
+      <div class="lawdet" id="lawdet"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="archive">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-lang="en">The archive</h2>
+      <h2 data-lang="hi">संग्रह</h2>
+      <p class="sub" data-lang="en">Four objects across the term, added one at a time.</p>
+      <p class="sub" data-lang="hi">इस सत्र में चार वस्तुएँ, एक-एक करके जोड़ी जाएँगी।</p>
+    </div>
+
+    <span class="counter">
+      <span data-lang="en">Object 01 of 4 published</span>
+      <span data-lang="hi">4 में से वस्तु 01 प्रकाशित</span>
+    </span>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-no">
+          <span data-lang="en">Object 01 · 19 September 2026</span>
+          <span data-lang="hi">वस्तु 01 · 19 सितम्बर 2026</span>
+        </span>
+        <span class="card-kind">
+          <span data-lang="en">Policy document</span><span data-lang="hi">नीति दस्तावेज़</span>
+        </span>
+      </div>
+      <div class="card-body">
+        <h3 data-lang="en">The clause that survived its own rewrite</h3>
+        <h3 data-lang="hi">वह धारा जो अपने ही पुनर्लेखन से बच निकली</h3>
+
+        <div class="obj">
+          <p class="obj-label"><span data-lang="en">THE OBJECT</span><span data-lang="hi">वस्तु</span></p>
+          <blockquote data-lang="en">
+            "Sexual intercourse or sexual acts by a man with his own wife, the wife not
+            being under eighteen years of age, is not rape."
+          </blockquote>
+          <blockquote data-lang="hi">
+            "किसी पुरुष द्वारा अपनी ही पत्नी के साथ संभोग या यौन कृत्य, जबकि पत्नी अठारह वर्ष से कम
+            आयु की न हो, बलात्कार नहीं है।"
+          </blockquote>
+          <cite>
+            Exception 2, Section 375, Indian Penal Code, 1860, as read down in
+            <em>Independent Thought v. Union of India</em> (2017), and carried forward in
+            substance as Exception 2 to Section 63, Bharatiya Nyaya Sanhita, 2023.
+          </cite>
+        </div>
+
+        <div class="body" data-lang="en">
+          <p>
+            The object here is not a photograph or a pamphlet. It is twenty six words of
+            statute, and that is the point. Almost everything this exhibit collects later
+            sits downstream of this clause. What is worth noticing first is how little it
+            argues. It never claims that a husband cannot rape his wife. It simply defines
+            the act out of existence by naming the relationship instead of naming consent,
+            which is the standard the rest of Section 375 actually uses.
+          </p>
+          <p>
+            What makes it worth opening with is what happened to it in 2023. When India
+            replaced the Indian Penal Code with the Bharatiya Nyaya Sanhita, a rewrite
+            publicly framed as shedding colonial era criminal law, the marital exception
+            was not repealed. It was retyped. Section 63 carries the same exception, the
+            same age threshold, the same structure. A carve out written in 1860 survived a
+            ground up rewrite intact. That means it is not a legislative oversight waiting
+            to be corrected. It is a position the state has now affirmed twice: in 2017 by
+            raising the age but not touching the principle, and in 2023 by choosing, out
+            of everything in the code it was willing to change, not to change this.
+          </p>
+          <p>
+            bell hooks argues in <em>Understanding Patriarchy</em> that patriarchy's real
+            power lies not in spectacular acts of domination but in arrangements so
+            ordinary that they are never named as violence, arrangements taught and
+            accepted inside the family as simply how things are. Exception 2 is that
+            argument in statutory form. The clause never asserts a husband's entitlement.
+            It does something quieter and far more durable, which is to place the marital
+            home outside the category where the question of consent can even be legally
+            asked. hooks' point is that patriarchy survives by being unremarkable. A
+            criminal code that could be written from scratch in 2023 and still carry this
+            clause forward without public argument is unremarkability made permanent.
+          </p>
+          <p>
+            The strikethrough exercise above is meant to make that legible. The clause does
+            its work through very ordinary words, "own wife" and "not rape," carrying
+            enormous legal weight without ever needing to defend itself.
+          </p>
+        </div>
+
+        <div class="body" data-lang="hi">
+          <p>
+            यहाँ प्रस्तुत वस्तु कोई तस्वीर या पर्चा नहीं है। यह कानून के छब्बीस शब्द हैं, और यही
+            इसकी अहमियत है। इस प्रदर्शनी में आगे जो कुछ आएगा, लगभग वह सब इसी धारा से निकलता है।
+            सबसे पहले ध्यान देने की बात यह है कि यह धारा कितना कम तर्क देती है। यह कभी यह दावा नहीं
+            करती कि पति अपनी पत्नी का बलात्कार कर ही नहीं सकता। यह बस सहमति का नाम लेने के बजाय
+            रिश्ते का नाम लेकर उस कृत्य को परिभाषा से बाहर कर देती है, जबकि सहमति ही वह कसौटी है जो
+            धारा 375 बाकी हर जगह इस्तेमाल करती है।
+          </p>
+          <p>
+            इसे पहली वस्तु बनाने की वजह 2023 में घटी बात है। जब भारत ने भारतीय दंड संहिता की जगह
+            भारतीय न्याय संहिता लाई, एक ऐसा पुनर्लेखन जिसे सार्वजनिक रूप से औपनिवेशिक आपराधिक कानून
+            से मुक्ति के रूप में पेश किया गया, तब वैवाहिक अपवाद हटाया नहीं गया। उसे दोबारा टाइप कर
+            दिया गया। धारा 63 वही अपवाद, वही आयु-सीमा, वही ढाँचा दोहराती है। 1860 में लिखा गया एक
+            अपवाद पूरी तरह नए सिरे से लिखे गए कानून में ज्यों का त्यों बच गया। इसका अर्थ है कि यह
+            कोई विधायी चूक नहीं है जो सुधार की प्रतीक्षा में हो। यह एक ऐसा रुख है जिसकी पुष्टि राज्य
+            अब दो बार कर चुका है: 2017 में आयु बढ़ाकर, पर सिद्धांत को छुए बिना, और 2023 में, पूरे
+            कानून में इतना कुछ बदलने को तैयार होते हुए भी इसे न बदलने का चुनाव करके।
+          </p>
+          <p>
+            बेल हुक्स <em>अंडरस्टैंडिंग पैट्रिआर्की</em> में तर्क देती हैं कि पितृसत्ता की असली ताकत
+            वर्चस्व के नाटकीय कृत्यों में नहीं, बल्कि उन व्यवस्थाओं में है जो इतनी सामान्य हैं कि
+            उन्हें कभी हिंसा कहा ही नहीं जाता, जो परिवार के भीतर सिखाई और स्वीकारी जाती हैं, मानो
+            चीज़ें ऐसी ही होती हैं। अपवाद 2 उसी तर्क का कानूनी रूप है। यह धारा पति के अधिकार का दावा
+            कभी नहीं करती। यह उससे कहीं शांत और कहीं टिकाऊ काम करती है, वैवाहिक घर को उस श्रेणी से
+            ही बाहर रख देती है जहाँ सहमति का सवाल कानूनी रूप से पूछा जा सके। हुक्स का मत है कि
+            पितृसत्ता सामान्य दिखकर ही टिकती है। जो आपराधिक कानून 2023 में नए सिरे से लिखा जा सके और
+            फिर भी इस धारा को बिना किसी सार्वजनिक बहस के आगे ले जाए, वह उसी सामान्यता को स्थायी बना
+            देता है।
+          </p>
+          <p>
+            ऊपर दिया गया स्ट्राइकथ्रू अभ्यास इसी को दिखाने के लिए है। यह धारा बेहद साधारण शब्दों,
+            "अपनी ही पत्नी" और "बलात्कार नहीं", के ज़रिए इतना भारी कानूनी बोझ ढोती है, और उसके लिए
+            कभी अपना बचाव करने की ज़रूरत भी महसूस नहीं करती।
+          </p>
+        </div>
+
+        <div class="readtag">
+          <strong><span data-lang="en">Course reading:</span><span data-lang="hi">पाठ्यक्रम पठन:</span></strong>
+          <span data-lang="en">
+            bell hooks, "Understanding Patriarchy," Session 6 (Gender Rights), OB-238
+            Creating, Managing and Leading Social Enterprises.
+          </span>
+          <span data-lang="hi">
+            बेल हुक्स, "अंडरस्टैंडिंग पैट्रिआर्की", सत्र 6 (जेंडर राइट्स), OB-238।
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top next">
+        <span class="card-no">
+          <span data-lang="en">Object 02 · next</span>
+          <span data-lang="hi">वस्तु 02 · अगली</span>
+        </span>
+        <span class="card-kind">
+          <span data-lang="en">Technical report</span><span data-lang="hi">तकनीकी रिपोर्ट</span>
+        </span>
+      </div>
+      <div class="card-body">
+        <h3 data-lang="en">The survey that counts what the law refuses to name</h3>
+        <h3 data-lang="hi">वह सर्वेक्षण जो उसे गिनता है जिसे कानून नाम देने से इनकार करता है</h3>
+        <p class="nextnote" data-lang="en">
+          Object 01 established what the law says. Object 02 turns to how many people live
+          underneath it. The National Family Health Survey, run by the Ministry of Health
+          and Family Welfare, asks ever married women directly whether their husband has
+          physically forced them into sex. Roughly six in every hundred say yes, and among
+          married women who report sexual violence at all, the husband is overwhelmingly
+          the person they name. The state therefore measures, in its own official survey,
+          precisely the conduct that its criminal code declines to call rape. That gap
+          between what is counted and what is criminalised is the object.
+        </p>
+        <p class="nextnote" data-lang="hi">
+          वस्तु 01 ने बताया कि कानून क्या कहता है। वस्तु 02 यह देखेगी कि उसके नीचे कितने लोग जीते
+          हैं। स्वास्थ्य एवं परिवार कल्याण मंत्रालय द्वारा संचालित राष्ट्रीय परिवार स्वास्थ्य
+          सर्वेक्षण विवाहित महिलाओं से सीधे पूछता है कि क्या उनके पति ने उन्हें शारीरिक रूप से
+          बाध्य किया। हर सौ में से लगभग छह महिलाएँ हाँ कहती हैं, और जो महिलाएँ यौन हिंसा की बात
+          कहती हैं उनमें अधिकांश पति का ही नाम लेती हैं। यानी राज्य अपने ही आधिकारिक सर्वेक्षण में
+          ठीक उसी आचरण को मापता है जिसे उसकी दंड संहिता बलात्कार कहने से इनकार करती है। गिने जाने
+          और अपराध माने जाने के बीच की यही खाई अगली वस्तु है।
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-lang="en">About this exhibit</h2>
+      <h2 data-lang="hi">इस प्रदर्शनी के बारे में</h2>
+    </div>
+    <div class="two">
+      <div>
+        <h3 data-lang="en">The theme</h3>
+        <h3 data-lang="hi">विषय</h3>
+        <p data-lang="en">
+          This exhibit follows one legal fact and its social life. Indian law does not
+          recognise non consensual sex within marriage as rape, provided the wife is an
+          adult. Each object is read against that fact. Does it defend the exception,
+          expose it, work around it, or simply show what it does to the people living
+          under it.
+        </p>
+        <p data-lang="hi">
+          यह प्रदर्शनी एक कानूनी तथ्य और उसके सामाजिक जीवन का पीछा करती है। भारतीय कानून विवाह के
+          भीतर बिना सहमति के यौन संबंध को बलात्कार नहीं मानता, बशर्ते पत्नी वयस्क हो। हर वस्तु उसी
+          तथ्य के सामने रखकर पढ़ी जाती है। क्या वह इस अपवाद का बचाव करती है, उसे उजागर करती है,
+          उसके इर्द-गिर्द रास्ता बनाती है, या बस यह दिखाती है कि इसके नीचे जीने वालों पर इसका क्या
+          असर पड़ता है।
+        </p>
+      </div>
+      <div>
+        <h3 data-lang="en">How it is built</h3>
+        <h3 data-lang="hi">यह कैसे बनी है</h3>
+        <p data-lang="en">
+          Each entry pairs one object with an analysis of no more than 500 words, placing
+          it inside the theme and against a reading from the course. Objects carry the
+          date they were added rather than a date the exhibit concludes, because it does
+          not conclude. Neither has the law.
+        </p>
+        <p data-lang="hi">
+          हर प्रविष्टि एक वस्तु को अधिकतम 500 शब्दों के विश्लेषण के साथ जोड़ती है, जो उसे विषय के
+          भीतर और पाठ्यक्रम की किसी पठन-सामग्री के सामने रखती है। वस्तुओं पर वह तारीख है जब वे जोड़ी
+          गईं, कोई समापन तिथि नहीं, क्योंकि यह समाप्त नहीं होती। न ही कानून।
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p data-lang="en">
+      An independent academic project for the Digital Exhibit assignment, OB-238 Creating,
+      Managing and Leading Social Enterprises, IIM Calcutta. Objects are drawn from public
+      legal records, published research and credited media, with sources cited at each
+      entry. This exhibit is not legal advice.
+    </p>
+    <p data-lang="hi">
+      यह OB-238 क्रिएटिंग, मैनेजिंग एंड लीडिंग सोशल एंटरप्राइजेज़, आईआईएम कलकत्ता के डिजिटल
+      एग्ज़िबिट असाइनमेंट के लिए एक स्वतंत्र शैक्षणिक परियोजना है। वस्तुएँ सार्वजनिक कानूनी
+      अभिलेखों, प्रकाशित शोध और श्रेय-सहित मीडिया से ली गई हैं, और स्रोत हर प्रविष्टि में दिए गए
+      हैं। यह कानूनी सलाह नहीं है।
+    </p>
+    <p class="cr">Compiled by Vishesh Garg.</p>
+  </div>
+</footer>
+
+<script>
+  var notes={
+    wife:{en:"This phrase does the entire exception's work. It does not say consenting adult, or partner. It says wife. The exemption is triggered by a marriage, not by consent, which is the standard the rest of Section 375 uses.",
+      hi:"यही वाक्यांश पूरे अपवाद का काम करता है। इसमें सहमति देने वाला वयस्क या साथी नहीं लिखा। लिखा है पत्नी। यह छूट विवाह से सक्रिय होती है, सहमति से नहीं, जबकि धारा 375 बाकी हर जगह सहमति की ही कसौटी लगाती है।"},
+    age:{en:"Independent Thought v. Union of India (2017) forced this number up from fifteen to eighteen, so the exception would line up with the law on child sexual offences. The Court read down the age. It left the exception itself standing. An adult wife still has no recourse.",
+      hi:"इंडिपेंडेंट थॉट बनाम भारत संघ (2017) ने इस संख्या को पंद्रह से बढ़ाकर अठारह कराया, ताकि यह अपवाद बाल यौन अपराध कानून के अनुरूप हो। अदालत ने आयु घटाकर पढ़ी। अपवाद को यथावत छोड़ दिया। वयस्क पत्नी के पास आज भी कोई रास्ता नहीं है।"},
+    not:{en:"This is the whole legal outcome. An act that would be rape under every other clause of the same section becomes, through these two words, not rape. A private matter, at most grounds for cruelty or divorce, never a criminal charge.",
+      hi:"यही पूरा कानूनी परिणाम है। जो कृत्य इसी धारा के हर दूसरे खंड के तहत बलात्कार होता, वह इन दो शब्दों से बलात्कार नहीं रह जाता। एक निजी मामला, अधिक से अधिक क्रूरता या तलाक का आधार, कभी आपराधिक आरोप नहीं।"}
+  };
+  var curKey=null;
+  document.querySelectorAll('.si-strike').forEach(function(el){
+    el.addEventListener('click',function(){
+      var k=el.dataset.k,isOn=el.classList.contains('struck');
+      document.querySelectorAll('.si-strike').forEach(function(x){
+        if(x.dataset.k===k) x.classList.toggle('struck',!isOn);
+      });
+      if(!isOn){curKey=k;paintNote();}else{curKey=null;document.getElementById('siNote').textContent='';}
+    });
+  });
+  function paintNote(){
+    if(!curKey)return;
+    document.getElementById('siNote').textContent=notes[curKey][document.body.classList.contains('lang-hi')?'hi':'en'];
+  }
+
+  var lawData=[
+   {t:{en:'The exception is written',hi:'अपवाद लिखा जाता है'},
+    b:{en:'The Indian Penal Code defines rape under Section 375 and, in the same section, exempts a husband from prosecution for non consensual sex with his wife above a stated age. It is drafted under colonial law that treated a wife as having given permanent consent at marriage.',
+       hi:'भारतीय दंड संहिता धारा 375 के तहत बलात्कार को परिभाषित करती है और उसी धारा में पति को एक निश्चित आयु से ऊपर की पत्नी के साथ बिना सहमति के संबंध पर मुकदमे से छूट दे देती है। यह उस औपनिवेशिक कानून के तहत लिखा गया जो मानता था कि विवाह के साथ ही पत्नी ने स्थायी सहमति दे दी है।'}},
+   {t:{en:'Verma Committee recommends repeal, Parliament declines',hi:'वर्मा समिति ने हटाने की सिफ़ारिश की, संसद ने नहीं माना'},
+    b:{en:'After the 2012 Delhi gang rape case, the Justice J.S. Verma Committee recommended removing the marital rape exception. The Criminal Law (Amendment) Act of 2013 widened the definition of rape in several ways and left Exception 2 untouched. The recommendation was in hand. It was not acted on.',
+       hi:'2012 के दिल्ली सामूहिक बलात्कार मामले के बाद न्यायमूर्ति जे.एस. वर्मा समिति ने वैवाहिक बलात्कार अपवाद हटाने की सिफ़ारिश की। आपराधिक कानून (संशोधन) अधिनियम, 2013 ने बलात्कार की परिभाषा कई तरह से चौड़ी की और अपवाद 2 को अछूता छोड़ दिया। सिफ़ारिश सामने थी। उस पर अमल नहीं हुआ।'}},
+   {t:{en:'Independent Thought v. Union of India',hi:'इंडिपेंडेंट थॉट बनाम भारत संघ'},
+    b:{en:'The Supreme Court holds that the exception cannot apply where the wife is under 18, aligning it with the age of consent under the child sexual offences law. This closes a gap for minors. The Court expressly declines to rule on the exception as it applies to adult wives, and the core exemption stands.',
+       hi:'सर्वोच्च न्यायालय ने कहा कि यह अपवाद तब लागू नहीं होगा जब पत्नी 18 वर्ष से कम की हो, ताकि यह बाल यौन अपराध कानून के तहत सहमति की आयु के अनुरूप हो। इससे नाबालिगों के लिए एक खाई भरी। अदालत ने वयस्क पत्नियों के संदर्भ में इस अपवाद पर निर्णय देने से स्पष्ट इनकार किया, और मूल छूट कायम रही।'}},
+   {t:{en:'Delhi High Court splits down the middle',hi:'दिल्ली उच्च न्यायालय का खंडित फ़ैसला'},
+    b:{en:'On 11 May 2022, in RIT Foundation v. Union of India, Justices Rajiv Shakdher and C. Hari Shankar deliver a split verdict. Justice Shakdher strikes the exception down as violating Article 14. Justice Hari Shankar upholds it, holding that it rests on an intelligible differentia. A split verdict binds no one, so the exception survives by procedural default rather than on the merits, and the matter moves to the Supreme Court.',
+       hi:'11 मई 2022 को, आरआईटी फाउंडेशन बनाम भारत संघ में, न्यायमूर्ति राजीव शकधर और न्यायमूर्ति सी. हरि शंकर ने खंडित फ़ैसला दिया। न्यायमूर्ति शकधर ने अनुच्छेद 14 के उल्लंघन के आधार पर अपवाद को रद्द किया। न्यायमूर्ति हरि शंकर ने इसे यह कहते हुए बरकरार रखा कि यह एक बोधगम्य भेद पर टिका है। खंडित फ़ैसला किसी पर बाध्यकारी नहीं होता, इसलिए अपवाद गुण-दोष पर नहीं बल्कि प्रक्रियागत चूक से बच गया, और मामला सर्वोच्च न्यायालय पहुँच गया।'}},
+   {t:{en:'Bharatiya Nyaya Sanhita re-enacts it',hi:'भारतीय न्याय संहिता इसे फिर लागू करती है'},
+    b:{en:'India replaces the Indian Penal Code with the Bharatiya Nyaya Sanhita. Section 63, Exception 2 carries the marital exception forward with the same structure and the same age threshold. A wholesale rewrite of criminal law was the moment to let the exception lapse quietly. It was kept instead.',
+       hi:'भारत ने भारतीय दंड संहिता की जगह भारतीय न्याय संहिता लागू की। धारा 63, अपवाद 2 वैवाहिक अपवाद को उसी ढाँचे और उसी आयु-सीमा के साथ आगे ले जाती है। आपराधिक कानून का पूरा पुनर्लेखन वह मौका था जब यह अपवाद चुपचाप समाप्त हो सकता था। उसे इसके बजाय रखा गया।'}}
+  ];
+  var cur=0,pts=document.querySelectorAll('.pt');
+  function renderLaw(i){
+    cur=i;
+    pts.forEach(function(p){p.classList.remove('on')});
+    pts[i].classList.add('on');
+    var l=document.body.classList.contains('lang-hi')?'hi':'en';
+    document.getElementById('lawdet').innerHTML='<strong>'+lawData[i].t[l]+'</strong>'+lawData[i].b[l];
+  }
+  pts.forEach(function(p){p.addEventListener('click',function(){renderLaw(parseInt(p.dataset.i,10))})});
+  renderLaw(0);
+
+  function setLang(l){
+    document.body.className='lang-'+l;
+    document.documentElement.lang=l;
+    document.getElementById('btn-en').classList.toggle('on',l==='en');
+    document.getElementById('btn-hi').classList.toggle('on',l==='hi');
+    renderLaw(cur);paintNote();
+    try{localStorage.setItem('exhibit-lang',l)}catch(e){}
+  }
+  try{if(localStorage.getItem('exhibit-lang')==='hi')setLang('hi')}catch(e){}
+</script>
+</body>
+</html>
