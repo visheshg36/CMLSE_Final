@@ -148,6 +148,33 @@
   .readtag strong{color:var(--haldi);font-weight:600}
   .nextnote{font-size:.95rem;line-height:1.76;color:var(--ash)}
 
+  /* DATA VIZ */
+  .datapanel{background:#fff;border:2px solid var(--night);margin:22px 0;padding:0;overflow:hidden}
+  .dp-head{background:var(--night);color:var(--ivory);padding:14px 22px;font-size:.82rem;font-weight:600}
+  .dp-body{padding:24px 22px 20px}
+  .bigstat{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;padding:22px}
+  .bigstat .num{font-family:var(--serif);font-size:clamp(2.6rem,6vw,4rem);font-weight:700;color:var(--sindoor);line-height:1}
+  .bigstat .desc{font-size:.95rem;line-height:1.65;color:var(--ash)}
+  @media(max-width:500px){.bigstat{grid-template-columns:1fr;text-align:center}}
+  .hbar{margin:10px 0 14px}
+  .hbar-row{display:flex;align-items:center;gap:12px;margin:0 0 12px}
+  .hbar-label{width:110px;flex-shrink:0;font-size:.84rem;text-align:right;color:var(--ash)}
+  @media(max-width:500px){.hbar-label{width:80px;font-size:.78rem}}
+  .hbar-track{flex:1;height:28px;background:var(--ivory2);position:relative;overflow:hidden}
+  .hbar-fill{height:100%;display:flex;align-items:center;padding:0 10px;font-size:.82rem;font-weight:600;color:#fff;white-space:nowrap;transition:width .6s}
+  .hbar-fill.physical{background:var(--sindoor);width:56.6%}
+  .hbar-fill.emotional{background:var(--haldi);width:28.2%;color:var(--night)}
+  .hbar-fill.sexual{background:var(--night);width:12.2%}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:8px 0 10px}
+  @media(max-width:500px){.compare{grid-template-columns:1fr}}
+  .cmp-card{border:1.5px solid var(--hair);padding:16px 18px}
+  .cmp-card .cmp-label{font-size:.78rem;color:var(--ash);margin:0 0 6px}
+  .cmp-card .cmp-nums{display:flex;align-items:baseline;gap:10px}
+  .cmp-card .cmp-hi{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--sindoor)}
+  .cmp-card .cmp-lo{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--mehendi)}
+  .cmp-card .cmp-vs{font-size:.82rem;color:var(--ash)}
+  .dp-cite{font-size:.74rem;color:var(--ash);padding:0 22px 16px;line-height:1.55}
+
   footer{background:var(--night);color:#A89789;padding:44px 0 56px;margin-top:60px}
   footer p{font-size:.85rem;line-height:1.75;max-width:64ch;margin:0 0 12px}
   footer .cr{font-size:.8rem;color:#746758;margin-top:18px}
@@ -394,8 +421,8 @@
     </div>
 
     <span class="counter">
-      <span data-lang="en">Object 01 of 4 published</span>
-      <span data-lang="hi">4 में से वस्तु 01 प्रकाशित</span>
+      <span data-lang="en">Objects 01 and 02 of 4 published</span>
+      <span data-lang="hi">4 में से वस्तु 01 और 02 प्रकाशित</span>
     </span>
 
     <div class="card">
@@ -518,11 +545,12 @@
       </div>
     </div>
 
+    <!-- OBJECT 02 -->
     <div class="card">
-      <div class="card-top next">
+      <div class="card-top">
         <span class="card-no">
-          <span data-lang="en">Object 02 · next</span>
-          <span data-lang="hi">वस्तु 02 · अगली</span>
+          <span data-lang="en">Object 02 · October 2026</span>
+          <span data-lang="hi">वस्तु 02 · अक्टूबर 2026</span>
         </span>
         <span class="card-kind">
           <span data-lang="en">Technical report</span><span data-lang="hi">तकनीकी रिपोर्ट</span>
@@ -531,24 +559,270 @@
       <div class="card-body">
         <h3 data-lang="en">The survey that counts what the law refuses to name</h3>
         <h3 data-lang="hi">वह सर्वेक्षण जो उसे गिनता है जिसे कानून नाम देने से इनकार करता है</h3>
+
+        <div class="obj">
+          <p class="obj-label"><span data-lang="en">THE OBJECT</span><span data-lang="hi">वस्तु</span></p>
+          <blockquote data-lang="en">
+            National Family Health Survey, Fifth Round (NFHS-5), 2019-21, India Report.
+            Chapter on Domestic Violence. International Institute for Population Sciences,
+            Mumbai, under the stewardship of the Ministry of Health and Family Welfare,
+            Government of India.
+          </blockquote>
+          <blockquote data-lang="hi">
+            राष्ट्रीय परिवार स्वास्थ्य सर्वेक्षण, पाँचवाँ दौर (NFHS-5), 2019-21, भारत रिपोर्ट।
+            घरेलू हिंसा अध्याय। अंतरराष्ट्रीय जनसंख्या विज्ञान संस्थान, मुंबई, स्वास्थ्य एवं
+            परिवार कल्याण मंत्रालय, भारत सरकार के निर्देशन में।
+          </blockquote>
+          <cite>
+            NFHS-5 fieldwork: June 2019 to April 2021. Sample: 724,115 women and
+            101,839 men across 636,699 households in all states and union territories.
+          </cite>
+        </div>
+
+        <!-- DATA VISUALIZATIONS -->
+        <div class="datapanel">
+          <div class="dp-head">
+            <span data-lang="en">THE NUMBER</span><span data-lang="hi">आँकड़ा</span>
+          </div>
+          <div class="bigstat">
+            <div class="num">6%</div>
+            <div class="desc">
+              <span data-lang="en">
+                of ever married women aged 18 to 49 report that their husband has
+                physically forced them into sexual intercourse or sexual acts. That is
+                about six in every hundred women, in one government survey, describing
+                exactly the conduct the criminal code declines to call rape.
+              </span>
+              <span data-lang="hi">
+                18 से 49 वर्ष की विवाहित महिलाएँ बताती हैं कि उनके पति ने उन्हें
+                शारीरिक रूप से संभोग या यौन कृत्यों के लिए बाध्य किया। एक सरकारी
+                सर्वेक्षण में हर सौ में से लगभग छह महिलाएँ ठीक उसी आचरण का वर्णन कर रही
+                हैं जिसे दंड संहिता बलात्कार कहने से इनकार करती है।
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="datapanel">
+          <div class="dp-head">
+            <span data-lang="en">FORMS OF SPOUSAL VIOLENCE, NFHS-5 (2019-21)</span>
+            <span data-lang="hi">वैवाहिक हिंसा के प्रकार, NFHS-5 (2019-21)</span>
+          </div>
+          <div class="dp-body">
+            <div class="hbar">
+              <div class="hbar-row">
+                <div class="hbar-label"><span data-lang="en">Physical</span><span data-lang="hi">शारीरिक</span></div>
+                <div class="hbar-track"><div class="hbar-fill physical">28.3%</div></div>
+              </div>
+              <div class="hbar-row">
+                <div class="hbar-label"><span data-lang="en">Emotional</span><span data-lang="hi">भावनात्मक</span></div>
+                <div class="hbar-track"><div class="hbar-fill emotional">14.1%</div></div>
+              </div>
+              <div class="hbar-row">
+                <div class="hbar-label"><span data-lang="en">Sexual</span><span data-lang="hi">यौन</span></div>
+                <div class="hbar-track"><div class="hbar-fill sexual">6.1%</div></div>
+              </div>
+            </div>
+          </div>
+          <p class="dp-cite">
+            <span data-lang="en">Percentage of ever married women aged 18-49 reporting each form of spousal violence. NFHS-5 (2019-21) data as analysed in Ramasubramani et al., Journal of Public Health (2023). Categories overlap; the combined figure is 32%.</span>
+            <span data-lang="hi">18-49 आयु वर्ग की विवाहित महिलाओं का प्रतिशत जिन्होंने वैवाहिक हिंसा के प्रत्येक प्रकार की रिपोर्ट की। NFHS-5 (2019-21) के आँकड़े, रामसुब्रमणि एवं अन्य, जर्नल ऑफ़ पब्लिक हेल्थ (2023) के विश्लेषण के अनुसार। श्रेणियाँ ओवरलैप करती हैं; संयुक्त आँकड़ा 32% है।</span>
+          </p>
+        </div>
+
+        <div class="datapanel">
+          <div class="dp-head">
+            <span data-lang="en">WHO BEARS IT: INTERSECTIONAL DISPARITIES</span>
+            <span data-lang="hi">बोझ किस पर: अंतर-अनुभागीय असमानताएँ</span>
+          </div>
+          <div class="dp-body">
+            <div class="compare">
+              <div class="cmp-card">
+                <p class="cmp-label"><span data-lang="en">Physical violence, by education</span><span data-lang="hi">शारीरिक हिंसा, शिक्षा के अनुसार</span></p>
+                <div class="cmp-nums">
+                  <span class="cmp-hi">40%</span>
+                  <span class="cmp-vs"><span data-lang="en">no schooling</span><span data-lang="hi">बिना शिक्षा</span></span>
+                </div>
+                <div class="cmp-nums" style="margin-top:4px">
+                  <span class="cmp-lo">18%</span>
+                  <span class="cmp-vs"><span data-lang="en">completed schooling</span><span data-lang="hi">शिक्षा पूरी की</span></span>
+                </div>
+              </div>
+              <div class="cmp-card">
+                <p class="cmp-label"><span data-lang="en">Physical violence, by location</span><span data-lang="hi">शारीरिक हिंसा, स्थान के अनुसार</span></p>
+                <div class="cmp-nums">
+                  <span class="cmp-hi">32%</span>
+                  <span class="cmp-vs"><span data-lang="en">rural</span><span data-lang="hi">ग्रामीण</span></span>
+                </div>
+                <div class="cmp-nums" style="margin-top:4px">
+                  <span class="cmp-lo">24%</span>
+                  <span class="cmp-vs"><span data-lang="en">urban</span><span data-lang="hi">शहरी</span></span>
+                </div>
+              </div>
+              <div class="cmp-card">
+                <p class="cmp-label"><span data-lang="en">Spousal physical or sexual violence, by husband's drinking</span><span data-lang="hi">वैवाहिक शारीरिक या यौन हिंसा, पति की शराब के अनुसार</span></p>
+                <div class="cmp-nums">
+                  <span class="cmp-hi">~70%</span>
+                  <span class="cmp-vs"><span data-lang="en">husband drinks</span><span data-lang="hi">पति पीता है</span></span>
+                </div>
+                <div class="cmp-nums" style="margin-top:4px">
+                  <span class="cmp-lo">~23%</span>
+                  <span class="cmp-vs"><span data-lang="en">does not drink</span><span data-lang="hi">नहीं पीता</span></span>
+                </div>
+              </div>
+              <div class="cmp-card">
+                <p class="cmp-label"><span data-lang="en">Violence by anyone: who speaks up</span><span data-lang="hi">किसी भी व्यक्ति द्वारा हिंसा: कौन बोलता है</span></p>
+                <div class="cmp-nums">
+                  <span class="cmp-hi">86%</span>
+                  <span class="cmp-vs"><span data-lang="en">never brought it up</span><span data-lang="hi">कभी बात नहीं उठाई</span></span>
+                </div>
+                <div class="cmp-nums" style="margin-top:4px">
+                  <span class="cmp-lo">14%</span>
+                  <span class="cmp-vs"><span data-lang="en">brought it up</span><span data-lang="hi">बात उठाई</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="dp-cite">
+            <span data-lang="en">Figures as reported in coverage of the NFHS-5 national report (2019-21). Education and location figures are for physical violence; the drinking figure is for spousal physical or sexual violence; the last card covers violence by anyone, not only husbands.</span>
+            <span data-lang="hi">NFHS-5 राष्ट्रीय रिपोर्ट (2019-21) की मीडिया रिपोर्टिंग के अनुसार आँकड़े। शिक्षा और स्थान के आँकड़े शारीरिक हिंसा के हैं; शराब का आँकड़ा वैवाहिक शारीरिक या यौन हिंसा का है; अंतिम कार्ड किसी भी व्यक्ति द्वारा की गई हिंसा को दर्शाता है, केवल पतियों को नहीं।</span>
+          </p>
+        </div>
+
+        <div class="body" data-lang="en">
+          <p>
+            Object 01 established what the law says. This one turns to how many people
+            live underneath it. The National Family Health Survey is India's largest
+            demographic and health survey, conducted roughly every five years under the
+            Ministry of Health and Family Welfare. In its fifth round, covering 2019 to
+            2021, it interviewed over 724,000 women. One of the things it asked ever
+            married women aged 18 to 49 was whether their husband had ever physically
+            forced them to have sexual intercourse or to perform sexual acts they did not
+            want to perform. About six percent said yes.
+          </p>
+          <p>
+            That number does not sound large until you remember what it is. Roughly six
+            in every hundred of the ever married women who answered the survey's domestic
+            violence module, about 64,000 of them, told an interviewer that their husband
+            had forced them into sex. The survey also found that 32 percent of married
+            women in the same age group have experienced some form of spousal violence,
+            whether physical, sexual or emotional. In more than 80 percent of cases of
+            physical violence against women, the perpetrator named was the husband. And
+            only 14 percent of women who experienced physical or sexual violence from
+            anyone have ever brought the issue up with anyone at all.
+          </p>
+          <p>
+            The object here is not only the numbers. It is the fact that these numbers
+            exist inside a government report. The same state that maintains a criminal code
+            exempting husbands from prosecution for rape also runs a survey that asks wives
+            whether their husbands forced them into sex, records their answers, publishes
+            the data, and does nothing to reconcile the two. The NFHS does not use the word
+            rape. It does not need to. The questions it asks describe exactly the conduct
+            that Section 375 defines as rape everywhere except inside a marriage. The
+            survey measures what the law refuses to name, and then both instruments sit
+            side by side in the same government's filing cabinet.
+          </p>
+          <p>
+            Crenshaw's framework of intersectionality, assigned in Session 7, helps make
+            visible what the national average hides. The NFHS data shows that violence is
+            not distributed evenly. Physical violence is sharply higher among women with no
+            schooling (40 percent) than among those who completed their education (18
+            percent), and higher in rural areas (32 percent) than in urban ones (24
+            percent). Spousal physical or sexual violence is roughly three times as common
+            when the husband drinks (about 70 percent) as when he does not (about 23
+            percent). The exception in
+            the criminal code is written as though all marriages are the same, but the
+            survey data shows that the women who live most directly under it are also the
+            women with the fewest resources to leave, to report, or to access the civil
+            remedies that are supposed to substitute for criminal ones. The law's
+            neutrality is the problem, not the solution.
+          </p>
+        </div>
+
+        <div class="body" data-lang="hi">
+          <p>
+            वस्तु 01 ने बताया कि कानून क्या कहता है। यह वस्तु यह देखती है कि उसके नीचे कितने लोग
+            जीते हैं। राष्ट्रीय परिवार स्वास्थ्य सर्वेक्षण भारत का सबसे बड़ा जनसांख्यिकीय और
+            स्वास्थ्य सर्वेक्षण है, जो स्वास्थ्य एवं परिवार कल्याण मंत्रालय के तहत लगभग हर पाँच
+            साल में किया जाता है। अपने पाँचवें दौर में, जो 2019 से 2021 तक चला, इसने 7,24,000 से
+            अधिक महिलाओं का साक्षात्कार लिया। एक सवाल जो इसने 18 से 49 वर्ष की विवाहित महिलाओं से
+            पूछा वह यह था कि क्या उनके पति ने कभी उन्हें शारीरिक रूप से संभोग के लिए या ऐसे यौन
+            कृत्यों के लिए बाध्य किया जो वे नहीं करना चाहती थीं। लगभग छह प्रतिशत ने हाँ कहा।
+          </p>
+          <p>
+            यह संख्या छोटी लगती है जब तक आप याद नहीं करते कि यह क्या है। सर्वेक्षण के घरेलू हिंसा
+            खंड में जवाब देने वाली लगभग 64,000 विवाहित महिलाओं में से हर सौ में लगभग छह ने
+            साक्षात्कारकर्ता को बताया कि उनके पति ने उन्हें संभोग के लिए बाध्य किया। सर्वेक्षण में
+            यह भी पाया गया कि उसी आयु वर्ग की 32 प्रतिशत विवाहित महिलाओं ने किसी न किसी रूप में
+            वैवाहिक हिंसा झेली है, चाहे शारीरिक हो, यौन हो या भावनात्मक। महिलाओं के विरुद्ध
+            शारीरिक हिंसा के 80 प्रतिशत से अधिक मामलों में नामित अपराधी पति था। और जिन महिलाओं
+            ने किसी भी व्यक्ति से शारीरिक या यौन हिंसा झेली, उनमें से केवल 14 प्रतिशत ने कभी किसी
+            से इसकी बात उठाई।
+          </p>
+          <p>
+            यहाँ वस्तु केवल ये आँकड़े नहीं हैं। वस्तु यह तथ्य है कि ये आँकड़े एक सरकारी रिपोर्ट
+            के भीतर मौजूद हैं। वही राज्य जो एक ऐसी दंड संहिता चलाता है जिसमें पतियों को बलात्कार के
+            मुकदमे से छूट है, वही एक सर्वेक्षण भी चलाता है जो पत्नियों से पूछता है कि क्या उनके
+            पतियों ने उन्हें बाध्य किया, उनके जवाब दर्ज करता है, आँकड़े प्रकाशित करता है, और इन दोनों
+            में कोई सामंजस्य बिठाने की कोशिश नहीं करता। NFHS "बलात्कार" शब्द का प्रयोग नहीं करता।
+            उसे ज़रूरत भी नहीं। जो सवाल वह पूछता है वे ठीक उसी आचरण का वर्णन करते हैं जिसे धारा 375
+            विवाह के अलावा हर जगह बलात्कार की परिभाषा में रखती है। सर्वेक्षण उसे मापता है जिसे कानून
+            नाम देने से इनकार करता है, और फिर दोनों उपकरण उसी सरकार की फ़ाइलों में एक साथ बैठे रहते
+            हैं।
+          </p>
+          <p>
+            सत्र 7 में निर्धारित क्रेनशॉ का अंतर-अनुभागीयता (intersectionality) का ढाँचा उसे दिखाने
+            में मदद करता है जो राष्ट्रीय औसत छिपा देता है। NFHS के आँकड़े बताते हैं कि हिंसा समान
+            रूप से वितरित नहीं है। बिना स्कूली शिक्षा वाली महिलाओं में शारीरिक हिंसा 40 प्रतिशत है,
+            जबकि शिक्षा पूरी करने वालियों में 18 प्रतिशत, और ग्रामीण क्षेत्रों में 32 प्रतिशत है, शहरी
+            में 24 प्रतिशत। जब पति शराब पीता है तो वैवाहिक शारीरिक या यौन हिंसा लगभग तीन गुना
+            अधिक होती है (लगभग 70 प्रतिशत, बनाम लगभग 23 प्रतिशत)। दंड संहिता का
+            अपवाद ऐसे लिखा गया है मानो सभी विवाह एक जैसे हों, लेकिन सर्वेक्षण के आँकड़े दिखाते हैं
+            कि जो महिलाएँ इस अपवाद के सबसे सीधे प्रभाव में जीती हैं, वही वे महिलाएँ हैं जिनके पास
+            छोड़ने, शिकायत करने, या उन नागरिक उपायों तक पहुँचने के सबसे कम साधन हैं जो आपराधिक
+            उपायों की जगह लेने वाले माने जाते हैं। कानून की तटस्थता समस्या है, समाधान नहीं।
+          </p>
+        </div>
+
+        <div class="readtag">
+          <strong><span data-lang="en">Course reading:</span><span data-lang="hi">पाठ्यक्रम पठन:</span></strong>
+          <span data-lang="en">
+            Kimberle Crenshaw, "Mapping the Margins: Intersectionality, Identity Politics,
+            and Violence Against Women of Color," Session 7 (Equal Opportunities), OB-238
+            Creating, Managing and Leading Social Enterprises.
+          </span>
+          <span data-lang="hi">
+            किम्बर्ले क्रेनशॉ, "मैपिंग द मार्जिन्स: इंटरसेक्शनैलिटी, आइडेंटिटी पॉलिटिक्स, एंड
+            वायलेंस अगेंस्ट वीमेन ऑफ़ कलर", सत्र 7 (समान अवसर), OB-238।
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- OBJECT 03 PREVIEW -->
+    <div class="card">
+      <div class="card-top next">
+        <span class="card-no">
+          <span data-lang="en">Object 03 · next</span>
+          <span data-lang="hi">वस्तु 03 · अगली</span>
+        </span>
+        <span class="card-kind">
+          <span data-lang="en">To be selected</span><span data-lang="hi">चयन शेष</span>
+        </span>
+      </div>
+      <div class="card-body">
+        <h3 data-lang="en">Coming next</h3>
+        <h3 data-lang="hi">अगली वस्तु</h3>
         <p class="nextnote" data-lang="en">
-          Object 01 established what the law says. Object 02 turns to how many people live
-          underneath it. The National Family Health Survey, run by the Ministry of Health
-          and Family Welfare, asks ever married women directly whether their husband has
-          physically forced them into sex. Roughly six in every hundred say yes, and among
-          married women who report sexual violence at all, the husband is overwhelmingly
-          the person they name. The state therefore measures, in its own official survey,
-          precisely the conduct that its criminal code declines to call rape. That gap
-          between what is counted and what is criminalised is the object.
+          Objects 01 and 02 established the law and the numbers. Object 03 will move
+          closer to lived experience: a documentary, testimony, protest material or
+          court document that shows how the exception plays out beyond the statute book
+          and the survey table.
         </p>
         <p class="nextnote" data-lang="hi">
-          वस्तु 01 ने बताया कि कानून क्या कहता है। वस्तु 02 यह देखेगी कि उसके नीचे कितने लोग जीते
-          हैं। स्वास्थ्य एवं परिवार कल्याण मंत्रालय द्वारा संचालित राष्ट्रीय परिवार स्वास्थ्य
-          सर्वेक्षण विवाहित महिलाओं से सीधे पूछता है कि क्या उनके पति ने उन्हें शारीरिक रूप से
-          बाध्य किया। हर सौ में से लगभग छह महिलाएँ हाँ कहती हैं, और जो महिलाएँ यौन हिंसा की बात
-          कहती हैं उनमें अधिकांश पति का ही नाम लेती हैं। यानी राज्य अपने ही आधिकारिक सर्वेक्षण में
-          ठीक उसी आचरण को मापता है जिसे उसकी दंड संहिता बलात्कार कहने से इनकार करती है। गिने जाने
-          और अपराध माने जाने के बीच की यही खाई अगली वस्तु है।
+          वस्तु 01 और 02 ने कानून और आँकड़े प्रस्तुत किए। वस्तु 03 जीवित अनुभव के और करीब जाएगी:
+          कोई वृत्तचित्र, गवाही, प्रतिरोध सामग्री या अदालती दस्तावेज़ जो दिखाए कि यह अपवाद
+          कानून की किताब और सर्वेक्षण की तालिका से आगे कैसे काम करता है।
         </p>
       </div>
     </div>
