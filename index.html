@@ -7,192 +7,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --night:#1C1520;
-    --ivory:#F6F0E5;
-    --ivory2:#EBE1D0;
-    --haldi:#BD8B26;
-    --mehendi:#4E6144;
-    --sindoor:#C0391F;
-    --sindoor-dp:#8E2413;
-    --ash:#6A5D55;
-    --hair:#D7C9B4;
-    --serif:'Source Serif 4',Georgia,serif;
-    --sans:'Inter',-apple-system,'Segoe UI',sans-serif;
-    --deva:'Tiro Devanagari Hindi','Noto Sans Devanagari',serif;
-    box-sizing:border-box;
-    padding-top:env(safe-area-inset-top,0px);
-    padding-bottom:env(safe-area-inset-bottom,0px);
-  }
-  *{box-sizing:inherit}
-  html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
-  body{margin:0;background:var(--ivory);color:var(--night);font-family:var(--sans)}
-  ::selection{background:var(--sindoor);color:#fff}
-  img,svg{max-width:100%;display:block}
-  .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
-
-  [data-lang]{display:none}
-  body.lang-en [data-lang="en"]{display:block}
-  body.lang-hi [data-lang="hi"]{display:block}
-  span[data-lang],em[data-lang]{display:none}
-  body.lang-en span[data-lang="en"],body.lang-en em[data-lang="en"]{display:inline}
-  body.lang-hi span[data-lang="hi"],body.lang-hi em[data-lang="hi"]{display:inline}
-  body.lang-hi [data-lang="hi"]{font-family:var(--deva);line-height:1.8}
-
-  header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:rgba(246,240,229,.96);backdrop-filter:blur(8px);border-bottom:2px solid var(--night)}
-  .nav-in{max-width:1000px;margin:0 auto;padding:13px 24px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
-  .brand{font-family:var(--serif);font-weight:700;font-size:1.06rem;text-decoration:none;color:var(--night)}
-  .brand .dot{color:var(--sindoor)}
-  .nav-right{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-  .nav-links{display:flex;gap:18px;font-size:.88rem}
-  .nav-links a{text-decoration:none;color:var(--ash);padding-bottom:2px;border-bottom:2px solid transparent;transition:.15s}
-  .nav-links a:hover{color:var(--night);border-color:var(--sindoor)}
-  .lang-toggle{display:flex;border:1.5px solid var(--night);overflow:hidden;background:#fff}
-  .lang-toggle button{border:0;background:none;padding:5px 14px;font-size:.82rem;cursor:pointer;color:var(--ash);font-family:var(--sans);font-weight:500}
-  .lang-toggle button.on{background:var(--night);color:var(--ivory)}
-  .lang-toggle button:focus-visible{outline:2px solid var(--sindoor);outline-offset:2px}
-
-  /* HERO */
-  .hero{background:var(--night);color:var(--ivory);padding:54px 0 0;position:relative;overflow:hidden}
-  .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:46px;align-items:end;position:relative}
-  @media(max-width:780px){.hero-grid{grid-template-columns:1fr;gap:30px}}
-  .kicker{font-size:.8rem;color:var(--haldi);font-weight:600;margin:0 0 15px}
-  .hero h1{font-family:var(--serif);font-size:clamp(2rem,4.8vw,3.3rem);line-height:1.06;font-weight:700;margin:0 0 22px;letter-spacing:-.015em;max-width:16ch}
-  body.lang-hi .hero h1{font-family:var(--deva);font-size:clamp(1.55rem,3.6vw,2.35rem);line-height:1.45}
-  .hero .lede{font-size:1.02rem;line-height:1.72;color:#CFC1B4;max-width:52ch;margin:0 0 36px}
-  .hero-poster img{width:100%;box-shadow:0 -4px 50px rgba(0,0,0,.55)}
-  .poster-cap{font-size:.74rem;color:#948479;padding:11px 0 14px;line-height:1.55}
-
-  /* CHAIN MOTIF BANDS */
-  .chainband{background:var(--night);padding:0 0 10px;overflow:hidden}
-  .chainband svg{width:100%;height:auto;display:block}
-  .motif-cap{max-width:1000px;margin:0 auto;padding:6px 24px 16px;font-size:.73rem;color:#8E8075;line-height:1.55}
-  .divider{background:var(--ivory2);border-top:2px solid var(--night);border-bottom:2px solid var(--night);padding:16px 0;margin:60px 0 0}
-  .divider svg{width:100%;max-width:820px;margin:0 auto;height:auto}
-
-  /* TILES */
-  .tiles{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--night);border-bottom:2px solid var(--night)}
-  @media(max-width:820px){.tiles{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:460px){.tiles{grid-template-columns:1fr}}
-  .tile{position:relative;padding:28px 22px 36px;text-decoration:none;color:#fff;display:block;transition:filter .2s;border-right:2px solid var(--night);overflow:hidden}
-  .tile:last-child{border-right:0}
-  @media(max-width:820px){.tile:nth-child(2n){border-right:0}.tile:nth-child(-n+2){border-bottom:2px solid var(--night)}}
-  @media(max-width:460px){.tile{border-right:0;border-bottom:2px solid var(--night)}.tile:last-child{border-bottom:0}}
-  .tile:hover{filter:brightness(1.13)}
-  .tile:focus-visible{outline:3px solid var(--haldi);outline-offset:-3px}
-  .t1{background:var(--sindoor-dp)} .t2{background:#2E2436} .t3{background:var(--mehendi)} .t4{background:var(--haldi)}
-  .tile .ic{width:34px;height:34px;margin-bottom:14px;opacity:.88}
-  .tile h3{font-family:var(--serif);font-size:1.12rem;font-weight:700;margin:0 0 8px;line-height:1.25}
-  body.lang-hi .tile h3{font-family:var(--deva);font-size:1rem}
-  .tile p{font-size:.85rem;line-height:1.55;margin:0;opacity:.93}
-
-  /* SECTIONS */
-  .sec{padding:60px 0 0}
-  .sec-head h2{font-family:var(--serif);font-size:1.72rem;font-weight:700;margin:0 0 10px;letter-spacing:-.01em}
-  body.lang-hi .sec-head h2{font-family:var(--deva);font-size:1.45rem}
-  .sec-head .sub{color:var(--ash);max-width:60ch;line-height:1.65;margin:0 0 32px;font-size:.96rem}
-
-  .two{display:grid;grid-template-columns:1fr 1fr;gap:36px}
-  @media(max-width:680px){.two{grid-template-columns:1fr}}
-  .two h3{font-family:var(--serif);font-size:1.08rem;font-weight:700;margin:0 0 9px}
-  body.lang-hi .two h3{font-family:var(--deva)}
-  .two p{color:var(--ash);line-height:1.72;font-size:.95rem;margin:0}
-
-  /* STATUTE */
-  .statute-box{background:var(--night);color:var(--ivory);padding:34px 32px 30px;position:relative;overflow:hidden;border:2px solid var(--night)}
-  .si-label{font-size:.76rem;color:var(--haldi);margin:0 0 18px}
-  .si-text{font-family:var(--serif);font-size:clamp(1.06rem,2.4vw,1.36rem);line-height:1.65;font-style:italic;margin:0}
-  body.lang-hi .si-text{font-family:var(--deva);font-style:normal;line-height:1.9}
-  .si-strike{cursor:pointer;border-bottom:1px dotted #8c8376;transition:color .25s;padding:0 1px}
-  .si-strike:hover{color:#E7A38F}
-  .si-strike.struck{color:#8c8376;text-decoration:line-through;text-decoration-color:var(--sindoor);text-decoration-thickness:3px}
-  .si-note{margin:16px 0 0;font-size:.9rem;line-height:1.68;color:#D6C8BA;min-height:70px;border-left:3px solid var(--sindoor);padding-left:15px}
-  .si-note:empty{border-left-color:#362C3C}
-  body.lang-hi .si-note{font-family:var(--deva)}
-  .si-hint{font-size:.77rem;color:#8E8075;margin:16px 0 0}
-
-  /* TIMELINE */
-  .lawbox{border:2px solid var(--night);background:#fff;padding:30px 26px 12px}
-  .track{position:relative;height:3px;background:var(--ivory2);margin:0 10px}
-  .pts{display:flex;justify-content:space-between;margin:0 0 22px}
-  .pt{display:flex;flex-direction:column;align-items:center;width:19%;cursor:pointer;background:none;border:0;padding:0;font-family:var(--sans)}
-  .pt .lnk{width:26px;height:15px;border:2.5px solid var(--ash);border-radius:8px;margin-top:-9px;margin-bottom:11px;transition:.18s;background:#fff}
-  .pt:hover .lnk,.pt.on .lnk{border-color:var(--sindoor);background:var(--sindoor)}
-  .pt .y{font-size:.83rem;font-weight:700;color:var(--ash);transition:.18s}
-  .pt.on .y{color:var(--sindoor)}
-  .pt:focus-visible{outline:2px solid var(--sindoor);outline-offset:3px}
-  .lawdet{border-top:2px solid var(--ivory2);padding:22px 2px 26px;font-size:.94rem;line-height:1.72;min-height:132px}
-  .lawdet strong{font-family:var(--serif);font-size:1.06rem;display:block;margin-bottom:8px;color:var(--sindoor-dp)}
-  body.lang-hi .lawdet,body.lang-hi .lawdet strong{font-family:var(--deva)}
-  @media(max-width:620px){.pts{flex-wrap:wrap;gap:18px 0}.pt{width:33%}.track{display:none}}
-
-  /* ARCHIVE */
-  .counter{display:inline-block;background:var(--night);color:var(--ivory);font-size:.78rem;font-weight:600;padding:5px 14px;margin-bottom:18px}
-  .card{border:2px solid var(--night);background:#fff;margin-bottom:26px}
-  .card-top{background:var(--sindoor-dp);color:#fff;padding:15px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-  .card-top.next{background:#2E2436}
-  .card-no{font-family:var(--serif);font-size:1.02rem;font-weight:700}
-  .card-kind{font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 11px}
-  .card-body{padding:28px 26px 30px}
-  .card-body h3{font-family:var(--serif);font-size:1.34rem;font-weight:700;margin:0 0 18px;line-height:1.3}
-  body.lang-hi .card-body h3{font-family:var(--deva);font-size:1.18rem}
-  .obj{background:var(--ivory2);border-left:4px solid var(--sindoor);padding:20px 22px;margin-bottom:22px}
-  .obj-label{font-size:.74rem;color:var(--ash);margin:0 0 10px;font-weight:600}
-  .obj blockquote{margin:0;font-family:var(--serif);font-style:italic;font-size:1.04rem;line-height:1.6}
-  body.lang-hi .obj blockquote{font-family:var(--deva);font-style:normal}
-  .obj cite{display:block;font-style:normal;font-family:var(--sans);font-size:.79rem;color:var(--ash);margin-top:13px;line-height:1.6}
-  .body p{line-height:1.76;font-size:.97rem;margin:0 0 15px}
-  .body p:last-child{margin-bottom:0}
-  .readtag{margin-top:22px;padding:16px 18px;background:var(--night);color:#CFC1B4;font-size:.88rem;line-height:1.65}
-  .readtag strong{color:var(--haldi);font-weight:600}
-  .nextnote{font-size:.95rem;line-height:1.76;color:var(--ash)}
-
-  /* DATA VIZ */
-  .datapanel{background:#fff;border:2px solid var(--night);margin:22px 0;padding:0;overflow:hidden}
-  .dp-head{background:var(--night);color:var(--ivory);padding:14px 22px;font-size:.82rem;font-weight:600}
-  .dp-body{padding:24px 22px 20px}
-  .bigstat{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;padding:22px}
-  .bigstat .num{font-family:var(--serif);font-size:clamp(2.6rem,6vw,4rem);font-weight:700;color:var(--sindoor);line-height:1}
-  .bigstat .desc{font-size:.95rem;line-height:1.65;color:var(--ash)}
-  @media(max-width:500px){.bigstat{grid-template-columns:1fr;text-align:center}}
-  .hbar{margin:10px 0 14px}
-  .hbar-row{display:flex;align-items:center;gap:12px;margin:0 0 12px}
-  .hbar-label{width:110px;flex-shrink:0;font-size:.84rem;text-align:right;color:var(--ash)}
-  @media(max-width:500px){.hbar-label{width:80px;font-size:.78rem}}
-  .hbar-track{flex:1;height:28px;background:var(--ivory2);position:relative;overflow:hidden}
-  .hbar-fill{height:100%;display:flex;align-items:center;padding:0 10px;font-size:.82rem;font-weight:600;color:#fff;white-space:nowrap;transition:width .6s}
-  .hbar-fill.physical{background:var(--sindoor);width:56.6%}
-  .hbar-fill.emotional{background:var(--haldi);width:28.2%;color:var(--night)}
-  .hbar-fill.sexual{background:var(--night);width:12.2%}
-  .compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:8px 0 10px}
-  @media(max-width:500px){.compare{grid-template-columns:1fr}}
-  .cmp-card{border:1.5px solid var(--hair);padding:16px 18px}
-  .cmp-card .cmp-label{font-size:.78rem;color:var(--ash);margin:0 0 6px}
-  .cmp-card .cmp-nums{display:flex;align-items:baseline;gap:10px}
-  .cmp-card .cmp-hi{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--sindoor)}
-  .cmp-card .cmp-lo{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--mehendi)}
-  .cmp-card .cmp-vs{font-size:.82rem;color:var(--ash)}
-  .dp-cite{font-size:.74rem;color:var(--ash);padding:0 22px 16px;line-height:1.55}
-
-  footer{background:var(--night);color:#A89789;padding:44px 0 56px;margin-top:60px}
-  footer p{font-size:.85rem;line-height:1.75;max-width:64ch;margin:0 0 12px}
-  footer .cr{font-size:.8rem;color:#746758;margin-top:18px}
-  body.lang-hi footer p{font-family:var(--deva)}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body class="lang-en">
-
 <header class="nav">
   <div class="nav-in">
-    <a class="brand" href="#top">Not Rape, By Law<span class="dot">.</span></a>
+    <a class="brand" href="index.html">Not Rape, By Law<span class="dot">.</span></a>
     <div class="nav-right">
-      <nav class="nav-links">
-        <a href="#about"><span data-lang="en">About</span><span data-lang="hi">परिचय</span></a>
-        <a href="#statute"><span data-lang="en">The Exception</span><span data-lang="hi">अपवाद</span></a>
-        <a href="#timeline"><span data-lang="en">Timeline</span><span data-lang="hi">कालक्रम</span></a>
-        <a href="#archive"><span data-lang="en">Archive</span><span data-lang="hi">संग्रह</span></a>
-      </nav>
+      <nav class="nav-links"><a href="index.html" class="here"><span data-lang="en">Home</span><span data-lang="hi">मुखपृष्ठ</span></a><a href="object-01.html"><span data-lang="en">01</span><span data-lang="hi">01</span></a><a href="object-02.html"><span data-lang="en">02</span><span data-lang="hi">02</span></a><a href="object-03.html"><span data-lang="en">03</span><span data-lang="hi">03</span></a><a href="index.html#about"><span data-lang="en">About</span><span data-lang="hi">परिचय</span></a></nav>
       <div class="lang-toggle" role="group" aria-label="Language">
         <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
         <button id="btn-hi" onclick="setLang('hi')">हिं</button>
@@ -200,9 +22,7 @@
     </div>
   </div>
 </header>
-
 <main id="top">
-
 <section class="hero">
   <div class="wrap">
     <div class="hero-grid">
@@ -239,7 +59,6 @@
   </div>
 </section>
 
-<!-- MANGALSUTRA TO CHAIN MOTIF -->
 <div class="chainband">
   <svg viewBox="0 0 1000 70" role="img" aria-label="A mangalsutra thread whose beads turn into chain links and end in a closed padlock.">
     <line x1="10" y1="35" x2="330" y2="35" stroke="#7A6A5C" stroke-width="1.5"/>
@@ -287,8 +106,8 @@
     </svg>
     <h3 data-lang="en">The Exception</h3>
     <h3 data-lang="hi">अपवाद</h3>
-    <p data-lang="en">Twenty six words of statute. Read them closely.</p>
-    <p data-lang="hi">कानून के छब्बीस शब्द। इन्हें ध्यान से पढ़िए।</p>
+    <p data-lang="en">Twenty four words of statute. Read them closely.</p>
+    <p data-lang="hi">कानून के चौबीस शब्द। इन्हें ध्यान से पढ़िए।</p>
   </a>
   <a class="tile t2" href="#timeline">
     <svg class="ic" viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="2.4" aria-hidden="true">
@@ -298,18 +117,18 @@
     </svg>
     <h3 data-lang="en">The Timeline</h3>
     <h3 data-lang="hi">कालक्रम</h3>
-    <p data-lang="en">Five moments it could have gone. It stayed.</p>
-    <p data-lang="hi">पाँच मौके जब यह हट सकता था। यह टिका रहा।</p>
+    <p data-lang="en">Every moment it could have gone. It stayed.</p>
+    <p data-lang="hi">हर मौका जब यह हट सकता था। यह टिका रहा।</p>
   </a>
-  <a class="tile t3" href="#archive">
+  <a class="tile t3" href="#objects">
     <svg class="ic" viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="2.4" aria-hidden="true">
       <rect x="5" y="9" width="30" height="24"/><line x1="5" y1="17" x2="35" y2="17"/>
       <line x1="15" y1="17" x2="15" y2="33"/><line x1="25" y1="17" x2="25" y2="33"/>
     </svg>
-    <h3 data-lang="en">The Archive</h3>
+    <h3 data-lang="en">The Objects</h3>
     <h3 data-lang="hi">संग्रह</h3>
-    <p data-lang="en">Four objects, added one at a time.</p>
-    <p data-lang="hi">चार वस्तुएँ, एक-एक करके जोड़ी गईं।</p>
+    <p data-lang="en">Four objects, each with its own page.</p>
+    <p data-lang="hi">चार वस्तुएँ, हर एक का अपना पृष्ठ।</p>
   </a>
   <a class="tile t4" href="#about">
     <svg class="ic" viewBox="0 0 40 40" fill="none" stroke="#3A2A0A" stroke-width="2.4" aria-hidden="true">
@@ -332,7 +151,7 @@
       <p class="sub" data-lang="hi">यह देखने के लिए कि हर वाक्यांश क्या काम कर रहा है, उस पर क्लिक कीजिए।</p>
     </div>
     <div class="statute-box">
-      <p class="si-label">Exception 2, Section 375, Indian Penal Code (1860) / Section 63, Bharatiya Nyaya Sanhita (2023)</p>
+      <p class="si-label">Exception 2, Section 375, Indian Penal Code (1860, as read down in 2017) / Section 63, Bharatiya Nyaya Sanhita (2023)</p>
       <p class="si-text" data-lang="en">
         Sexual intercourse or sexual acts by a man with his
         <span class="si-strike" data-k="wife">own wife</span>, the wife not being
@@ -394,442 +213,53 @@
     <div class="sec-head">
       <h2 data-lang="en">How the exception has, and has not, moved</h2>
       <h2 data-lang="hi">यह अपवाद कितना बदला, और कितना नहीं</h2>
-      <p class="sub" data-lang="en">Five moments when it could have gone. Click a year.</p>
-      <p class="sub" data-lang="hi">पाँच मौके जब यह हट सकता था। किसी वर्ष पर क्लिक कीजिए।</p>
+      <p class="sub" data-lang="en">Every moment it could have gone, from 1860 to the case pending today. Click a year.</p>
+      <p class="sub" data-lang="hi">हर मौका जब यह हट सकता था, 1860 से आज लंबित मामले तक। किसी वर्ष पर क्लिक कीजिए।</p>
     </div>
     <div class="lawbox">
-      <div class="track"></div>
-      <div class="pts" id="pts">
-        <button class="pt on" data-i="0"><span class="lnk"></span><span class="y">1860</span></button>
-        <button class="pt" data-i="1"><span class="lnk"></span><span class="y">2013</span></button>
-        <button class="pt" data-i="2"><span class="lnk"></span><span class="y">2017</span></button>
-        <button class="pt" data-i="3"><span class="lnk"></span><span class="y">2022</span></button>
-        <button class="pt" data-i="4"><span class="lnk"></span><span class="y">2023</span></button>
-      </div>
-      <div class="lawdet" id="lawdet"></div>
+      <div class="pts" id="pts"></div>
+      <div class="lawdet" id="lawdet" aria-live="polite"></div>
     </div>
   </div>
-</section>
-
-<section class="sec" id="archive">
+</section><section class="sec" id="objects">
   <div class="wrap">
     <div class="sec-head">
-      <h2 data-lang="en">The archive</h2>
-      <h2 data-lang="hi">संग्रह</h2>
-      <p class="sub" data-lang="en">Four objects across the term, added one at a time.</p>
-      <p class="sub" data-lang="hi">इस सत्र में चार वस्तुएँ, एक-एक करके जोड़ी जाएँगी।</p>
+      <h2 data-lang="en">The objects</h2><h2 data-lang="hi">वस्तुएँ</h2>
+      <p class="sub" data-lang="en">Four objects across the term. Three are published. Each one has its own page.</p>
+      <p class="sub" data-lang="hi">इस सत्र में चार वस्तुएँ। तीन प्रकाशित हैं। हर एक का अपना पृष्ठ है।</p>
     </div>
-
-    <span class="counter">
-      <span data-lang="en">Objects 01 and 02 of 4 published</span>
-      <span data-lang="hi">4 में से वस्तु 01 और 02 प्रकाशित</span>
-    </span>
-
-    <div class="card">
-      <div class="card-top">
-        <span class="card-no">
-          <span data-lang="en">Object 01 · 19 September 2026</span>
-          <span data-lang="hi">वस्तु 01 · 19 सितम्बर 2026</span>
-        </span>
-        <span class="card-kind">
-          <span data-lang="en">Policy document</span><span data-lang="hi">नीति दस्तावेज़</span>
-        </span>
-      </div>
-      <div class="card-body">
-        <h3 data-lang="en">The clause that survived its own rewrite</h3>
-        <h3 data-lang="hi">वह धारा जो अपने ही पुनर्लेखन से बच निकली</h3>
-
-        <div class="obj">
-          <p class="obj-label"><span data-lang="en">THE OBJECT</span><span data-lang="hi">वस्तु</span></p>
-          <blockquote data-lang="en">
-            "Sexual intercourse or sexual acts by a man with his own wife, the wife not
-            being under eighteen years of age, is not rape."
-          </blockquote>
-          <blockquote data-lang="hi">
-            "किसी पुरुष द्वारा अपनी ही पत्नी के साथ संभोग या यौन कृत्य, जबकि पत्नी अठारह वर्ष से कम
-            आयु की न हो, बलात्कार नहीं है।"
-          </blockquote>
-          <cite>
-            Exception 2, Section 375, Indian Penal Code, 1860, as read down in
-            <em>Independent Thought v. Union of India</em> (2017), and carried forward in
-            substance as Exception 2 to Section 63, Bharatiya Nyaya Sanhita, 2023.
-          </cite>
-        </div>
-
-        <div class="body" data-lang="en">
-          <p>
-            The object here is not a photograph or a pamphlet. It is twenty six words of
-            statute, and that is the point. Almost everything this exhibit collects later
-            sits downstream of this clause. What is worth noticing first is how little it
-            argues. It never claims that a husband cannot rape his wife. It simply defines
-            the act out of existence by naming the relationship instead of naming consent,
-            which is the standard the rest of Section 375 actually uses.
-          </p>
-          <p>
-            What makes it worth opening with is what happened to it in 2023. When India
-            replaced the Indian Penal Code with the Bharatiya Nyaya Sanhita, a rewrite
-            publicly framed as shedding colonial era criminal law, the marital exception
-            was not repealed. It was retyped. Section 63 carries the same exception, the
-            same age threshold, the same structure. A carve out written in 1860 survived a
-            ground up rewrite intact. That means it is not a legislative oversight waiting
-            to be corrected. It is a position the state has now affirmed twice: in 2017 by
-            raising the age but not touching the principle, and in 2023 by choosing, out
-            of everything in the code it was willing to change, not to change this.
-          </p>
-          <p>
-            bell hooks argues in <em>Understanding Patriarchy</em> that patriarchy's real
-            power lies not in spectacular acts of domination but in arrangements so
-            ordinary that they are never named as violence, arrangements taught and
-            accepted inside the family as simply how things are. Exception 2 is that
-            argument in statutory form. The clause never asserts a husband's entitlement.
-            It does something quieter and far more durable, which is to place the marital
-            home outside the category where the question of consent can even be legally
-            asked. hooks' point is that patriarchy survives by being unremarkable. A
-            criminal code that could be written from scratch in 2023 and still carry this
-            clause forward without public argument is unremarkability made permanent.
-          </p>
-          <p>
-            The strikethrough exercise above is meant to make that legible. The clause does
-            its work through very ordinary words, "own wife" and "not rape," carrying
-            enormous legal weight without ever needing to defend itself.
-          </p>
-        </div>
-
-        <div class="body" data-lang="hi">
-          <p>
-            यहाँ प्रस्तुत वस्तु कोई तस्वीर या पर्चा नहीं है। यह कानून के छब्बीस शब्द हैं, और यही
-            इसकी अहमियत है। इस प्रदर्शनी में आगे जो कुछ आएगा, लगभग वह सब इसी धारा से निकलता है।
-            सबसे पहले ध्यान देने की बात यह है कि यह धारा कितना कम तर्क देती है। यह कभी यह दावा नहीं
-            करती कि पति अपनी पत्नी का बलात्कार कर ही नहीं सकता। यह बस सहमति का नाम लेने के बजाय
-            रिश्ते का नाम लेकर उस कृत्य को परिभाषा से बाहर कर देती है, जबकि सहमति ही वह कसौटी है जो
-            धारा 375 बाकी हर जगह इस्तेमाल करती है।
-          </p>
-          <p>
-            इसे पहली वस्तु बनाने की वजह 2023 में घटी बात है। जब भारत ने भारतीय दंड संहिता की जगह
-            भारतीय न्याय संहिता लाई, एक ऐसा पुनर्लेखन जिसे सार्वजनिक रूप से औपनिवेशिक आपराधिक कानून
-            से मुक्ति के रूप में पेश किया गया, तब वैवाहिक अपवाद हटाया नहीं गया। उसे दोबारा टाइप कर
-            दिया गया। धारा 63 वही अपवाद, वही आयु-सीमा, वही ढाँचा दोहराती है। 1860 में लिखा गया एक
-            अपवाद पूरी तरह नए सिरे से लिखे गए कानून में ज्यों का त्यों बच गया। इसका अर्थ है कि यह
-            कोई विधायी चूक नहीं है जो सुधार की प्रतीक्षा में हो। यह एक ऐसा रुख है जिसकी पुष्टि राज्य
-            अब दो बार कर चुका है: 2017 में आयु बढ़ाकर, पर सिद्धांत को छुए बिना, और 2023 में, पूरे
-            कानून में इतना कुछ बदलने को तैयार होते हुए भी इसे न बदलने का चुनाव करके।
-          </p>
-          <p>
-            बेल हुक्स <em>अंडरस्टैंडिंग पैट्रिआर्की</em> में तर्क देती हैं कि पितृसत्ता की असली ताकत
-            वर्चस्व के नाटकीय कृत्यों में नहीं, बल्कि उन व्यवस्थाओं में है जो इतनी सामान्य हैं कि
-            उन्हें कभी हिंसा कहा ही नहीं जाता, जो परिवार के भीतर सिखाई और स्वीकारी जाती हैं, मानो
-            चीज़ें ऐसी ही होती हैं। अपवाद 2 उसी तर्क का कानूनी रूप है। यह धारा पति के अधिकार का दावा
-            कभी नहीं करती। यह उससे कहीं शांत और कहीं टिकाऊ काम करती है, वैवाहिक घर को उस श्रेणी से
-            ही बाहर रख देती है जहाँ सहमति का सवाल कानूनी रूप से पूछा जा सके। हुक्स का मत है कि
-            पितृसत्ता सामान्य दिखकर ही टिकती है। जो आपराधिक कानून 2023 में नए सिरे से लिखा जा सके और
-            फिर भी इस धारा को बिना किसी सार्वजनिक बहस के आगे ले जाए, वह उसी सामान्यता को स्थायी बना
-            देता है।
-          </p>
-          <p>
-            ऊपर दिया गया स्ट्राइकथ्रू अभ्यास इसी को दिखाने के लिए है। यह धारा बेहद साधारण शब्दों,
-            "अपनी ही पत्नी" और "बलात्कार नहीं", के ज़रिए इतना भारी कानूनी बोझ ढोती है, और उसके लिए
-            कभी अपना बचाव करने की ज़रूरत भी महसूस नहीं करती।
-          </p>
-        </div>
-
-        <div class="readtag">
-          <strong><span data-lang="en">Course reading:</span><span data-lang="hi">पाठ्यक्रम पठन:</span></strong>
-          <span data-lang="en">
-            bell hooks, "Understanding Patriarchy," Session 6 (Gender Rights), OB-238
-            Creating, Managing and Leading Social Enterprises.
-          </span>
-          <span data-lang="hi">
-            बेल हुक्स, "अंडरस्टैंडिंग पैट्रिआर्की", सत्र 6 (जेंडर राइट्स), OB-238।
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <!-- OBJECT 02 -->
-    <div class="card">
-      <div class="card-top">
-        <span class="card-no">
-          <span data-lang="en">Object 02 · October 2026</span>
-          <span data-lang="hi">वस्तु 02 · अक्टूबर 2026</span>
-        </span>
-        <span class="card-kind">
-          <span data-lang="en">Technical report</span><span data-lang="hi">तकनीकी रिपोर्ट</span>
-        </span>
-      </div>
-      <div class="card-body">
-        <h3 data-lang="en">The survey that counts what the law refuses to name</h3>
-        <h3 data-lang="hi">वह सर्वेक्षण जो उसे गिनता है जिसे कानून नाम देने से इनकार करता है</h3>
-
-        <div class="obj">
-          <p class="obj-label"><span data-lang="en">THE OBJECT</span><span data-lang="hi">वस्तु</span></p>
-          <blockquote data-lang="en">
-            National Family Health Survey, Fifth Round (NFHS-5), 2019-21, India Report.
-            Chapter on Domestic Violence. International Institute for Population Sciences,
-            Mumbai, under the stewardship of the Ministry of Health and Family Welfare,
-            Government of India.
-          </blockquote>
-          <blockquote data-lang="hi">
-            राष्ट्रीय परिवार स्वास्थ्य सर्वेक्षण, पाँचवाँ दौर (NFHS-5), 2019-21, भारत रिपोर्ट।
-            घरेलू हिंसा अध्याय। अंतरराष्ट्रीय जनसंख्या विज्ञान संस्थान, मुंबई, स्वास्थ्य एवं
-            परिवार कल्याण मंत्रालय, भारत सरकार के निर्देशन में।
-          </blockquote>
-          <cite>
-            NFHS-5 fieldwork: June 2019 to April 2021. Sample: 724,115 women and
-            101,839 men across 636,699 households in all states and union territories.
-          </cite>
-        </div>
-
-        <!-- DATA VISUALIZATIONS -->
-        <div class="datapanel">
-          <div class="dp-head">
-            <span data-lang="en">THE NUMBER</span><span data-lang="hi">आँकड़ा</span>
-          </div>
-          <div class="bigstat">
-            <div class="num">6%</div>
-            <div class="desc">
-              <span data-lang="en">
-                of ever married women aged 18 to 49 report that their husband has
-                physically forced them into sexual intercourse or sexual acts. That is
-                about six in every hundred women, in one government survey, describing
-                exactly the conduct the criminal code declines to call rape.
-              </span>
-              <span data-lang="hi">
-                18 से 49 वर्ष की विवाहित महिलाएँ बताती हैं कि उनके पति ने उन्हें
-                शारीरिक रूप से संभोग या यौन कृत्यों के लिए बाध्य किया। एक सरकारी
-                सर्वेक्षण में हर सौ में से लगभग छह महिलाएँ ठीक उसी आचरण का वर्णन कर रही
-                हैं जिसे दंड संहिता बलात्कार कहने से इनकार करती है।
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="datapanel">
-          <div class="dp-head">
-            <span data-lang="en">FORMS OF SPOUSAL VIOLENCE, NFHS-5 (2019-21)</span>
-            <span data-lang="hi">वैवाहिक हिंसा के प्रकार, NFHS-5 (2019-21)</span>
-          </div>
-          <div class="dp-body">
-            <div class="hbar">
-              <div class="hbar-row">
-                <div class="hbar-label"><span data-lang="en">Physical</span><span data-lang="hi">शारीरिक</span></div>
-                <div class="hbar-track"><div class="hbar-fill physical">28.3%</div></div>
-              </div>
-              <div class="hbar-row">
-                <div class="hbar-label"><span data-lang="en">Emotional</span><span data-lang="hi">भावनात्मक</span></div>
-                <div class="hbar-track"><div class="hbar-fill emotional">14.1%</div></div>
-              </div>
-              <div class="hbar-row">
-                <div class="hbar-label"><span data-lang="en">Sexual</span><span data-lang="hi">यौन</span></div>
-                <div class="hbar-track"><div class="hbar-fill sexual">6.1%</div></div>
-              </div>
-            </div>
-          </div>
-          <p class="dp-cite">
-            <span data-lang="en">Percentage of ever married women aged 18-49 reporting each form of spousal violence. NFHS-5 (2019-21) data as analysed in Ramasubramani et al., Journal of Public Health (2023). Categories overlap; the combined figure is 32%.</span>
-            <span data-lang="hi">18-49 आयु वर्ग की विवाहित महिलाओं का प्रतिशत जिन्होंने वैवाहिक हिंसा के प्रत्येक प्रकार की रिपोर्ट की। NFHS-5 (2019-21) के आँकड़े, रामसुब्रमणि एवं अन्य, जर्नल ऑफ़ पब्लिक हेल्थ (2023) के विश्लेषण के अनुसार। श्रेणियाँ ओवरलैप करती हैं; संयुक्त आँकड़ा 32% है।</span>
-          </p>
-        </div>
-
-        <div class="datapanel">
-          <div class="dp-head">
-            <span data-lang="en">WHO BEARS IT: INTERSECTIONAL DISPARITIES</span>
-            <span data-lang="hi">बोझ किस पर: अंतर-अनुभागीय असमानताएँ</span>
-          </div>
-          <div class="dp-body">
-            <div class="compare">
-              <div class="cmp-card">
-                <p class="cmp-label"><span data-lang="en">Physical violence, by education</span><span data-lang="hi">शारीरिक हिंसा, शिक्षा के अनुसार</span></p>
-                <div class="cmp-nums">
-                  <span class="cmp-hi">40%</span>
-                  <span class="cmp-vs"><span data-lang="en">no schooling</span><span data-lang="hi">बिना शिक्षा</span></span>
-                </div>
-                <div class="cmp-nums" style="margin-top:4px">
-                  <span class="cmp-lo">18%</span>
-                  <span class="cmp-vs"><span data-lang="en">completed schooling</span><span data-lang="hi">शिक्षा पूरी की</span></span>
-                </div>
-              </div>
-              <div class="cmp-card">
-                <p class="cmp-label"><span data-lang="en">Physical violence, by location</span><span data-lang="hi">शारीरिक हिंसा, स्थान के अनुसार</span></p>
-                <div class="cmp-nums">
-                  <span class="cmp-hi">32%</span>
-                  <span class="cmp-vs"><span data-lang="en">rural</span><span data-lang="hi">ग्रामीण</span></span>
-                </div>
-                <div class="cmp-nums" style="margin-top:4px">
-                  <span class="cmp-lo">24%</span>
-                  <span class="cmp-vs"><span data-lang="en">urban</span><span data-lang="hi">शहरी</span></span>
-                </div>
-              </div>
-              <div class="cmp-card">
-                <p class="cmp-label"><span data-lang="en">Spousal physical or sexual violence, by husband's drinking</span><span data-lang="hi">वैवाहिक शारीरिक या यौन हिंसा, पति की शराब के अनुसार</span></p>
-                <div class="cmp-nums">
-                  <span class="cmp-hi">~70%</span>
-                  <span class="cmp-vs"><span data-lang="en">husband drinks</span><span data-lang="hi">पति पीता है</span></span>
-                </div>
-                <div class="cmp-nums" style="margin-top:4px">
-                  <span class="cmp-lo">~23%</span>
-                  <span class="cmp-vs"><span data-lang="en">does not drink</span><span data-lang="hi">नहीं पीता</span></span>
-                </div>
-              </div>
-              <div class="cmp-card">
-                <p class="cmp-label"><span data-lang="en">Violence by anyone: who speaks up</span><span data-lang="hi">किसी भी व्यक्ति द्वारा हिंसा: कौन बोलता है</span></p>
-                <div class="cmp-nums">
-                  <span class="cmp-hi">86%</span>
-                  <span class="cmp-vs"><span data-lang="en">never brought it up</span><span data-lang="hi">कभी बात नहीं उठाई</span></span>
-                </div>
-                <div class="cmp-nums" style="margin-top:4px">
-                  <span class="cmp-lo">14%</span>
-                  <span class="cmp-vs"><span data-lang="en">brought it up</span><span data-lang="hi">बात उठाई</span></span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p class="dp-cite">
-            <span data-lang="en">Figures as reported in coverage of the NFHS-5 national report (2019-21). Education and location figures are for physical violence; the drinking figure is for spousal physical or sexual violence; the last card covers violence by anyone, not only husbands.</span>
-            <span data-lang="hi">NFHS-5 राष्ट्रीय रिपोर्ट (2019-21) की मीडिया रिपोर्टिंग के अनुसार आँकड़े। शिक्षा और स्थान के आँकड़े शारीरिक हिंसा के हैं; शराब का आँकड़ा वैवाहिक शारीरिक या यौन हिंसा का है; अंतिम कार्ड किसी भी व्यक्ति द्वारा की गई हिंसा को दर्शाता है, केवल पतियों को नहीं।</span>
-          </p>
-        </div>
-
-        <div class="body" data-lang="en">
-          <p>
-            Object 01 established what the law says. This one turns to how many people
-            live underneath it. The National Family Health Survey is India's largest
-            demographic and health survey, conducted roughly every five years under the
-            Ministry of Health and Family Welfare. In its fifth round, covering 2019 to
-            2021, it interviewed over 724,000 women. One of the things it asked ever
-            married women aged 18 to 49 was whether their husband had ever physically
-            forced them to have sexual intercourse or to perform sexual acts they did not
-            want to perform. About six percent said yes.
-          </p>
-          <p>
-            That number does not sound large until you remember what it is. Roughly six
-            in every hundred of the ever married women who answered the survey's domestic
-            violence module, about 64,000 of them, told an interviewer that their husband
-            had forced them into sex. The survey also found that 32 percent of married
-            women in the same age group have experienced some form of spousal violence,
-            whether physical, sexual or emotional. In more than 80 percent of cases of
-            physical violence against women, the perpetrator named was the husband. And
-            only 14 percent of women who experienced physical or sexual violence from
-            anyone have ever brought the issue up with anyone at all.
-          </p>
-          <p>
-            The object here is not only the numbers. It is the fact that these numbers
-            exist inside a government report. The same state that maintains a criminal code
-            exempting husbands from prosecution for rape also runs a survey that asks wives
-            whether their husbands forced them into sex, records their answers, publishes
-            the data, and does nothing to reconcile the two. The NFHS does not use the word
-            rape. It does not need to. The questions it asks describe exactly the conduct
-            that Section 375 defines as rape everywhere except inside a marriage. The
-            survey measures what the law refuses to name, and then both instruments sit
-            side by side in the same government's filing cabinet.
-          </p>
-          <p>
-            Crenshaw's framework of intersectionality, assigned in Session 7, helps make
-            visible what the national average hides. The NFHS data shows that violence is
-            not distributed evenly. Physical violence is sharply higher among women with no
-            schooling (40 percent) than among those who completed their education (18
-            percent), and higher in rural areas (32 percent) than in urban ones (24
-            percent). Spousal physical or sexual violence is roughly three times as common
-            when the husband drinks (about 70 percent) as when he does not (about 23
-            percent). The exception in
-            the criminal code is written as though all marriages are the same, but the
-            survey data shows that the women who live most directly under it are also the
-            women with the fewest resources to leave, to report, or to access the civil
-            remedies that are supposed to substitute for criminal ones. The law's
-            neutrality is the problem, not the solution.
-          </p>
-        </div>
-
-        <div class="body" data-lang="hi">
-          <p>
-            वस्तु 01 ने बताया कि कानून क्या कहता है। यह वस्तु यह देखती है कि उसके नीचे कितने लोग
-            जीते हैं। राष्ट्रीय परिवार स्वास्थ्य सर्वेक्षण भारत का सबसे बड़ा जनसांख्यिकीय और
-            स्वास्थ्य सर्वेक्षण है, जो स्वास्थ्य एवं परिवार कल्याण मंत्रालय के तहत लगभग हर पाँच
-            साल में किया जाता है। अपने पाँचवें दौर में, जो 2019 से 2021 तक चला, इसने 7,24,000 से
-            अधिक महिलाओं का साक्षात्कार लिया। एक सवाल जो इसने 18 से 49 वर्ष की विवाहित महिलाओं से
-            पूछा वह यह था कि क्या उनके पति ने कभी उन्हें शारीरिक रूप से संभोग के लिए या ऐसे यौन
-            कृत्यों के लिए बाध्य किया जो वे नहीं करना चाहती थीं। लगभग छह प्रतिशत ने हाँ कहा।
-          </p>
-          <p>
-            यह संख्या छोटी लगती है जब तक आप याद नहीं करते कि यह क्या है। सर्वेक्षण के घरेलू हिंसा
-            खंड में जवाब देने वाली लगभग 64,000 विवाहित महिलाओं में से हर सौ में लगभग छह ने
-            साक्षात्कारकर्ता को बताया कि उनके पति ने उन्हें संभोग के लिए बाध्य किया। सर्वेक्षण में
-            यह भी पाया गया कि उसी आयु वर्ग की 32 प्रतिशत विवाहित महिलाओं ने किसी न किसी रूप में
-            वैवाहिक हिंसा झेली है, चाहे शारीरिक हो, यौन हो या भावनात्मक। महिलाओं के विरुद्ध
-            शारीरिक हिंसा के 80 प्रतिशत से अधिक मामलों में नामित अपराधी पति था। और जिन महिलाओं
-            ने किसी भी व्यक्ति से शारीरिक या यौन हिंसा झेली, उनमें से केवल 14 प्रतिशत ने कभी किसी
-            से इसकी बात उठाई।
-          </p>
-          <p>
-            यहाँ वस्तु केवल ये आँकड़े नहीं हैं। वस्तु यह तथ्य है कि ये आँकड़े एक सरकारी रिपोर्ट
-            के भीतर मौजूद हैं। वही राज्य जो एक ऐसी दंड संहिता चलाता है जिसमें पतियों को बलात्कार के
-            मुकदमे से छूट है, वही एक सर्वेक्षण भी चलाता है जो पत्नियों से पूछता है कि क्या उनके
-            पतियों ने उन्हें बाध्य किया, उनके जवाब दर्ज करता है, आँकड़े प्रकाशित करता है, और इन दोनों
-            में कोई सामंजस्य बिठाने की कोशिश नहीं करता। NFHS "बलात्कार" शब्द का प्रयोग नहीं करता।
-            उसे ज़रूरत भी नहीं। जो सवाल वह पूछता है वे ठीक उसी आचरण का वर्णन करते हैं जिसे धारा 375
-            विवाह के अलावा हर जगह बलात्कार की परिभाषा में रखती है। सर्वेक्षण उसे मापता है जिसे कानून
-            नाम देने से इनकार करता है, और फिर दोनों उपकरण उसी सरकार की फ़ाइलों में एक साथ बैठे रहते
-            हैं।
-          </p>
-          <p>
-            सत्र 7 में निर्धारित क्रेनशॉ का अंतर-अनुभागीयता (intersectionality) का ढाँचा उसे दिखाने
-            में मदद करता है जो राष्ट्रीय औसत छिपा देता है। NFHS के आँकड़े बताते हैं कि हिंसा समान
-            रूप से वितरित नहीं है। बिना स्कूली शिक्षा वाली महिलाओं में शारीरिक हिंसा 40 प्रतिशत है,
-            जबकि शिक्षा पूरी करने वालियों में 18 प्रतिशत, और ग्रामीण क्षेत्रों में 32 प्रतिशत है, शहरी
-            में 24 प्रतिशत। जब पति शराब पीता है तो वैवाहिक शारीरिक या यौन हिंसा लगभग तीन गुना
-            अधिक होती है (लगभग 70 प्रतिशत, बनाम लगभग 23 प्रतिशत)। दंड संहिता का
-            अपवाद ऐसे लिखा गया है मानो सभी विवाह एक जैसे हों, लेकिन सर्वेक्षण के आँकड़े दिखाते हैं
-            कि जो महिलाएँ इस अपवाद के सबसे सीधे प्रभाव में जीती हैं, वही वे महिलाएँ हैं जिनके पास
-            छोड़ने, शिकायत करने, या उन नागरिक उपायों तक पहुँचने के सबसे कम साधन हैं जो आपराधिक
-            उपायों की जगह लेने वाले माने जाते हैं। कानून की तटस्थता समस्या है, समाधान नहीं।
-          </p>
-        </div>
-
-        <div class="readtag">
-          <strong><span data-lang="en">Course reading:</span><span data-lang="hi">पाठ्यक्रम पठन:</span></strong>
-          <span data-lang="en">
-            Kimberle Crenshaw, "Mapping the Margins: Intersectionality, Identity Politics,
-            and Violence Against Women of Color," Session 7 (Equal Opportunities), OB-238
-            Creating, Managing and Leading Social Enterprises.
-          </span>
-          <span data-lang="hi">
-            किम्बर्ले क्रेनशॉ, "मैपिंग द मार्जिन्स: इंटरसेक्शनैलिटी, आइडेंटिटी पॉलिटिक्स, एंड
-            वायलेंस अगेंस्ट वीमेन ऑफ़ कलर", सत्र 7 (समान अवसर), OB-238।
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <!-- OBJECT 03 PREVIEW -->
-    <div class="card">
-      <div class="card-top next">
-        <span class="card-no">
-          <span data-lang="en">Object 03 · next</span>
-          <span data-lang="hi">वस्तु 03 · अगली</span>
-        </span>
-        <span class="card-kind">
-          <span data-lang="en">To be selected</span><span data-lang="hi">चयन शेष</span>
-        </span>
-      </div>
-      <div class="card-body">
-        <h3 data-lang="en">Coming next</h3>
-        <h3 data-lang="hi">अगली वस्तु</h3>
-        <p class="nextnote" data-lang="en">
-          Objects 01 and 02 established the law and the numbers. Object 03 will move
-          closer to lived experience: a documentary, testimony, protest material or
-          court document that shows how the exception plays out beyond the statute book
-          and the survey table.
-        </p>
-        <p class="nextnote" data-lang="hi">
-          वस्तु 01 और 02 ने कानून और आँकड़े प्रस्तुत किए। वस्तु 03 जीवित अनुभव के और करीब जाएगी:
-          कोई वृत्तचित्र, गवाही, प्रतिरोध सामग्री या अदालती दस्तावेज़ जो दिखाए कि यह अपवाद
-          कानून की किताब और सर्वेक्षण की तालिका से आगे कैसे काम करता है।
-        </p>
-      </div>
+    <div class="objgrid">
+<a class="objcard" href="object-01.html">
+  <div class="ob-no">01</div>
+  <div class="ob-kind"><span data-lang="en">Policy document</span><span data-lang="hi">नीति दस्तावेज़</span></div>
+  <h3 data-lang="en">The clause that survived its own rewrite</h3><h3 data-lang="hi">वह धारा जो अपने ही पुनर्लेखन से बच निकली</h3>
+  <p data-lang="en">Twenty four words of statute, carried from 1860 into the 2023 criminal code.</p><p data-lang="hi">कानून के चौबीस शब्द, जो 1860 से 2023 की आपराधिक संहिता तक पहुँचे।</p>
+  <span class="go"><span data-lang="en">Open the object &rarr;</span><span data-lang="hi">वस्तु खोलें &rarr;</span></span>
+</a>
+<a class="objcard" href="object-02.html">
+  <div class="ob-no">02</div>
+  <div class="ob-kind"><span data-lang="en">Technical report</span><span data-lang="hi">तकनीकी रिपोर्ट</span></div>
+  <h3 data-lang="en">The survey that counts what the law refuses to name</h3><h3 data-lang="hi">वह सर्वेक्षण जो उसे गिनता है जिसे कानून नाम देने से इनकार करता है</h3>
+  <p data-lang="en">The state's own health survey measures the conduct its criminal code will not call rape.</p><p data-lang="hi">राज्य का अपना स्वास्थ्य सर्वेक्षण उसी आचरण को मापता है जिसे उसकी दंड संहिता बलात्कार नहीं कहती।</p>
+  <span class="go"><span data-lang="en">Open the object &rarr;</span><span data-lang="hi">वस्तु खोलें &rarr;</span></span>
+</a>
+<a class="objcard" href="object-03.html">
+  <div class="ob-no">03</div>
+  <div class="ob-kind"><span data-lang="en">Policy document, government affidavit</span><span data-lang="hi">नीति दस्तावेज़, सरकारी हलफ़नामा</span></div>
+  <h3 data-lang="en">The case for keeping it</h3><h3 data-lang="hi">इसे बनाए रखने का पक्ष</h3>
+  <p data-lang="en">How the state has defended the exception from 2000 to the Supreme Court hearing of 2026.</p><p data-lang="hi">2000 से 2026 की सर्वोच्च न्यायालय सुनवाई तक राज्य ने इस अपवाद का बचाव कैसे किया।</p>
+  <span class="go"><span data-lang="en">Open the object &rarr;</span><span data-lang="hi">वस्तु खोलें &rarr;</span></span>
+</a>
+<div class="objcard soon">
+  <div class="ob-no">04</div>
+  <div class="ob-kind"><span data-lang="en">Next</span><span data-lang="hi">अगली</span></div>
+  <h3 data-lang="en">Coming next</h3><h3 data-lang="hi">शीघ्र</h3>
+  <p data-lang="en">The first three objects show the wall. The last one turns to the people working on the other side of it.</p><p data-lang="hi">पहली तीन वस्तुएँ दीवार दिखाती हैं। अंतिम वस्तु उन लोगों की ओर मुड़ती है जो उसके दूसरी ओर काम कर रहे हैं।</p>
+  
+</div>
     </div>
   </div>
-</section>
-
-<section class="sec" id="about">
+</section><section class="sec" id="about">
   <div class="wrap">
     <div class="sec-head">
       <h2 data-lang="en">About this exhibit</h2>
@@ -873,87 +303,16 @@
   </div>
 </section>
 
-</main>
 
+</main>
 <footer>
   <div class="wrap">
-    <p data-lang="en">
-      An independent academic project for the Digital Exhibit assignment, OB-238 Creating,
-      Managing and Leading Social Enterprises, IIM Calcutta. Objects are drawn from public
-      legal records, published research and credited media, with sources cited at each
-      entry. This exhibit is not legal advice.
-    </p>
-    <p data-lang="hi">
-      यह OB-238 क्रिएटिंग, मैनेजिंग एंड लीडिंग सोशल एंटरप्राइजेज़, आईआईएम कलकत्ता के डिजिटल
-      एग्ज़िबिट असाइनमेंट के लिए एक स्वतंत्र शैक्षणिक परियोजना है। वस्तुएँ सार्वजनिक कानूनी
-      अभिलेखों, प्रकाशित शोध और श्रेय-सहित मीडिया से ली गई हैं, और स्रोत हर प्रविष्टि में दिए गए
-      हैं। यह कानूनी सलाह नहीं है।
-    </p>
+    <p data-lang="en">An independent academic project for the Digital Exhibit assignment, OB-238 Creating, Managing and Leading Social Enterprises, IIM Calcutta. Objects are drawn from public legal records, published research and credited media, with sources cited on each object page. This exhibit is not legal advice.</p>
+    <p data-lang="hi">यह OB-238 क्रिएटिंग, मैनेजिंग एंड लीडिंग सोशल एंटरप्राइजेज़, आईआईएम कलकत्ता के डिजिटल एग्ज़िबिट असाइनमेंट के लिए एक स्वतंत्र शैक्षणिक परियोजना है। वस्तुएँ सार्वजनिक कानूनी अभिलेखों, प्रकाशित शोध और श्रेय-सहित मीडिया से ली गई हैं, और स्रोत हर वस्तु के पृष्ठ पर दिए गए हैं। यह कानूनी सलाह नहीं है।</p>
     <p class="cr">Compiled by Vishesh Garg.</p>
   </div>
 </footer>
+<script src="site.js"></script>
 
-<script>
-  var notes={
-    wife:{en:"This phrase does the entire exception's work. It does not say consenting adult, or partner. It says wife. The exemption is triggered by a marriage, not by consent, which is the standard the rest of Section 375 uses.",
-      hi:"यही वाक्यांश पूरे अपवाद का काम करता है। इसमें सहमति देने वाला वयस्क या साथी नहीं लिखा। लिखा है पत्नी। यह छूट विवाह से सक्रिय होती है, सहमति से नहीं, जबकि धारा 375 बाकी हर जगह सहमति की ही कसौटी लगाती है।"},
-    age:{en:"Independent Thought v. Union of India (2017) forced this number up from fifteen to eighteen, so the exception would line up with the law on child sexual offences. The Court read down the age. It left the exception itself standing. An adult wife still has no recourse.",
-      hi:"इंडिपेंडेंट थॉट बनाम भारत संघ (2017) ने इस संख्या को पंद्रह से बढ़ाकर अठारह कराया, ताकि यह अपवाद बाल यौन अपराध कानून के अनुरूप हो। अदालत ने आयु घटाकर पढ़ी। अपवाद को यथावत छोड़ दिया। वयस्क पत्नी के पास आज भी कोई रास्ता नहीं है।"},
-    not:{en:"This is the whole legal outcome. An act that would be rape under every other clause of the same section becomes, through these two words, not rape. A private matter, at most grounds for cruelty or divorce, never a criminal charge.",
-      hi:"यही पूरा कानूनी परिणाम है। जो कृत्य इसी धारा के हर दूसरे खंड के तहत बलात्कार होता, वह इन दो शब्दों से बलात्कार नहीं रह जाता। एक निजी मामला, अधिक से अधिक क्रूरता या तलाक का आधार, कभी आपराधिक आरोप नहीं।"}
-  };
-  var curKey=null;
-  document.querySelectorAll('.si-strike').forEach(function(el){
-    el.addEventListener('click',function(){
-      var k=el.dataset.k,isOn=el.classList.contains('struck');
-      document.querySelectorAll('.si-strike').forEach(function(x){
-        if(x.dataset.k===k) x.classList.toggle('struck',!isOn);
-      });
-      if(!isOn){curKey=k;paintNote();}else{curKey=null;document.getElementById('siNote').textContent='';}
-    });
-  });
-  function paintNote(){
-    if(!curKey)return;
-    document.getElementById('siNote').textContent=notes[curKey][document.body.classList.contains('lang-hi')?'hi':'en'];
-  }
-
-  var lawData=[
-   {t:{en:'The exception is written',hi:'अपवाद लिखा जाता है'},
-    b:{en:'The Indian Penal Code defines rape under Section 375 and, in the same section, exempts a husband from prosecution for non consensual sex with his wife above a stated age. It is drafted under colonial law that treated a wife as having given permanent consent at marriage.',
-       hi:'भारतीय दंड संहिता धारा 375 के तहत बलात्कार को परिभाषित करती है और उसी धारा में पति को एक निश्चित आयु से ऊपर की पत्नी के साथ बिना सहमति के संबंध पर मुकदमे से छूट दे देती है। यह उस औपनिवेशिक कानून के तहत लिखा गया जो मानता था कि विवाह के साथ ही पत्नी ने स्थायी सहमति दे दी है।'}},
-   {t:{en:'Verma Committee recommends repeal, Parliament declines',hi:'वर्मा समिति ने हटाने की सिफ़ारिश की, संसद ने नहीं माना'},
-    b:{en:'After the 2012 Delhi gang rape case, the Justice J.S. Verma Committee recommended removing the marital rape exception. The Criminal Law (Amendment) Act of 2013 widened the definition of rape in several ways and left Exception 2 untouched. The recommendation was in hand. It was not acted on.',
-       hi:'2012 के दिल्ली सामूहिक बलात्कार मामले के बाद न्यायमूर्ति जे.एस. वर्मा समिति ने वैवाहिक बलात्कार अपवाद हटाने की सिफ़ारिश की। आपराधिक कानून (संशोधन) अधिनियम, 2013 ने बलात्कार की परिभाषा कई तरह से चौड़ी की और अपवाद 2 को अछूता छोड़ दिया। सिफ़ारिश सामने थी। उस पर अमल नहीं हुआ।'}},
-   {t:{en:'Independent Thought v. Union of India',hi:'इंडिपेंडेंट थॉट बनाम भारत संघ'},
-    b:{en:'The Supreme Court holds that the exception cannot apply where the wife is under 18, aligning it with the age of consent under the child sexual offences law. This closes a gap for minors. The Court expressly declines to rule on the exception as it applies to adult wives, and the core exemption stands.',
-       hi:'सर्वोच्च न्यायालय ने कहा कि यह अपवाद तब लागू नहीं होगा जब पत्नी 18 वर्ष से कम की हो, ताकि यह बाल यौन अपराध कानून के तहत सहमति की आयु के अनुरूप हो। इससे नाबालिगों के लिए एक खाई भरी। अदालत ने वयस्क पत्नियों के संदर्भ में इस अपवाद पर निर्णय देने से स्पष्ट इनकार किया, और मूल छूट कायम रही।'}},
-   {t:{en:'Delhi High Court splits down the middle',hi:'दिल्ली उच्च न्यायालय का खंडित फ़ैसला'},
-    b:{en:'On 11 May 2022, in RIT Foundation v. Union of India, Justices Rajiv Shakdher and C. Hari Shankar deliver a split verdict. Justice Shakdher strikes the exception down as violating Article 14. Justice Hari Shankar upholds it, holding that it rests on an intelligible differentia. A split verdict binds no one, so the exception survives by procedural default rather than on the merits, and the matter moves to the Supreme Court.',
-       hi:'11 मई 2022 को, आरआईटी फाउंडेशन बनाम भारत संघ में, न्यायमूर्ति राजीव शकधर और न्यायमूर्ति सी. हरि शंकर ने खंडित फ़ैसला दिया। न्यायमूर्ति शकधर ने अनुच्छेद 14 के उल्लंघन के आधार पर अपवाद को रद्द किया। न्यायमूर्ति हरि शंकर ने इसे यह कहते हुए बरकरार रखा कि यह एक बोधगम्य भेद पर टिका है। खंडित फ़ैसला किसी पर बाध्यकारी नहीं होता, इसलिए अपवाद गुण-दोष पर नहीं बल्कि प्रक्रियागत चूक से बच गया, और मामला सर्वोच्च न्यायालय पहुँच गया।'}},
-   {t:{en:'Bharatiya Nyaya Sanhita re-enacts it',hi:'भारतीय न्याय संहिता इसे फिर लागू करती है'},
-    b:{en:'India replaces the Indian Penal Code with the Bharatiya Nyaya Sanhita. Section 63, Exception 2 carries the marital exception forward with the same structure and the same age threshold. A wholesale rewrite of criminal law was the moment to let the exception lapse quietly. It was kept instead.',
-       hi:'भारत ने भारतीय दंड संहिता की जगह भारतीय न्याय संहिता लागू की। धारा 63, अपवाद 2 वैवाहिक अपवाद को उसी ढाँचे और उसी आयु-सीमा के साथ आगे ले जाती है। आपराधिक कानून का पूरा पुनर्लेखन वह मौका था जब यह अपवाद चुपचाप समाप्त हो सकता था। उसे इसके बजाय रखा गया।'}}
-  ];
-  var cur=0,pts=document.querySelectorAll('.pt');
-  function renderLaw(i){
-    cur=i;
-    pts.forEach(function(p){p.classList.remove('on')});
-    pts[i].classList.add('on');
-    var l=document.body.classList.contains('lang-hi')?'hi':'en';
-    document.getElementById('lawdet').innerHTML='<strong>'+lawData[i].t[l]+'</strong>'+lawData[i].b[l];
-  }
-  pts.forEach(function(p){p.addEventListener('click',function(){renderLaw(parseInt(p.dataset.i,10))})});
-  renderLaw(0);
-
-  function setLang(l){
-    document.body.className='lang-'+l;
-    document.documentElement.lang=l;
-    document.getElementById('btn-en').classList.toggle('on',l==='en');
-    document.getElementById('btn-hi').classList.toggle('on',l==='hi');
-    renderLaw(cur);paintNote();
-    try{localStorage.setItem('exhibit-lang',l)}catch(e){}
-  }
-  try{if(localStorage.getItem('exhibit-lang')==='hi')setLang('hi')}catch(e){}
-</script>
 </body>
 </html>
